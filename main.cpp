@@ -6,7 +6,7 @@ struct studentas
 {
     std::string firstName, lastName;
     int *grades;
-    int gradeCount, examGrade;
+    int gradeCount = 0, examGrade = 0;
     double finalGradeAvg = 0;
 };
 
@@ -29,7 +29,8 @@ void input(studentas &s)
 
     std::cout << "Įveskite studento egzamino pažymį: ";
     std::cin >> s.examGrade;
-    s.finalGradeAvg = (s.finalGradeAvg / s.gradeCount) * 0.4 + s.examGrade * 0.6;
+    s.finalGradeAvg = s.gradeCount != 0 ? (s.finalGradeAvg / s.gradeCount) * 0.4 + s.examGrade * 0.6 : s.examGrade * 0.6;
+    delete[] s.grades;
 }
 
 void output(studentas s)
