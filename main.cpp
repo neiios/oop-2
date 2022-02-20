@@ -6,14 +6,15 @@
 #include <vector>
 #include <ctime>
 
-struct studentas {
+struct student {
     std::string firstName, lastName;
     std::vector<int> grades;
-    int gradeCount = 0, examGrade = 0;
+    int gradeCount = 0;
+    int examGrade = 0;
     double finalGradeAvg = 0, finalGradeMedian = 0;
 };
 
-void findAverage(studentas &s) {
+void findAverage(student &s) {
     if (s.gradeCount == 0) {
         s.finalGradeAvg = s.examGrade * 0.6;
     } else {
@@ -21,20 +22,21 @@ void findAverage(studentas &s) {
     }
 }
 
-void findMedian(studentas &s) {
-    std::sort(s.grades.begin(), s.grades.end());
+void findMedian(student &s) {
     if (s.gradeCount == 0) {
         s.finalGradeMedian = s.examGrade * 0.6;
+        return;
     }
+    std::sort(s.grades.begin(), s.grades.end());
     if (s.gradeCount % 2 == 0) {
         s.finalGradeMedian =
-                ((s.grades[s.grades.size() / 2 - 1] + s.grades[s.grades.size() / 2]) / 2.0) * 0.4 + s.examGrade * 0.6;
+                ((s.grades[s.gradeCount / 2 - 1] + s.grades[s.gradeCount / 2]) / 2.0) * 0.4 + s.examGrade * 0.6;
     } else {
-        s.finalGradeMedian = s.grades[s.grades.size() / 2] * 0.4 + s.examGrade * 0.6;
+        s.finalGradeMedian = s.grades[s.gradeCount / 2] * 0.4 + s.examGrade * 0.6;
     }
 }
 
-void inputGrades(studentas &s) {
+void inputGrades(student &s) {
     for (size_t j = 0; j < s.gradeCount; j++) {
         int temp;
         std::cout << "Įveskite pažymį Nr." << j + 1 << ": ";
@@ -45,11 +47,11 @@ void inputGrades(studentas &s) {
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
         s.grades.push_back(temp);
-        s.finalGradeAvg += s.grades.back();
+        s.finalGradeAvg += temp;
     }
 }
 
-void randomizeGrades(studentas &s) {
+void randomizeGrades(student &s) {
     std::srand(std::time(nullptr));
     for (size_t j = 0; j < s.gradeCount; j++) {
         // generates the same numbers
@@ -59,7 +61,7 @@ void randomizeGrades(studentas &s) {
     }
 }
 
-void inputGradesEndless(studentas &s) {
+void inputGradesEndless(student &s) {
     // endless loop
     for (;;) {
         int temp = 0;
@@ -76,12 +78,12 @@ void inputGradesEndless(studentas &s) {
         }
 
         s.grades.push_back(temp);
-        s.finalGradeAvg += s.grades.back();
+        s.finalGradeAvg += temp;
     }
     s.gradeCount = s.grades.size();
 }
 
-void input(std::vector<studentas> &s) {
+void input(std::vector<student> &s) {
     for (int i = 0;; i++) {
         s.emplace_back();
         std::cout << "Įveskite studento vardą: ";
@@ -93,14 +95,13 @@ void input(std::vector<studentas> &s) {
                 << " (\"-1\" jeigu nežinote n)? ";
         // input check
         while (!(std::cin >> s[i].gradeCount) || s[i].gradeCount < -1) {
-            std::cout << s[i].gradeCount << "\n";
             std::cout << "Klaidingas kiekis, bandikyte įvesti dar kartą: ";
             std::cin.clear(); // Clear error flags
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
 
         // input grades
-        if (s[i].gradeCount != -1) {
+        if (s[i].gradeCount > 0) {
             std::string choice;
             std::cout
                     << "Sugeneruoti pažymius automatiškai (taip arba ne)? ";
@@ -109,7 +110,8 @@ void input(std::vector<studentas> &s) {
             } else {
                 inputGrades(s[i]);
             }
-        } else {
+        }
+        if (s[i].gradeCount == -1) {
             inputGradesEndless(s[i]);
         }
 
@@ -133,7 +135,7 @@ void input(std::vector<studentas> &s) {
     }
 }
 
-void output(const std::vector<studentas> &s) {
+void output(const std::vector<student> &s) {
     std::string choice;
     std::cout << "Jei norite išvesti medianą įveskite \"m\" (vidurkis - default): ";
     if (std::cin >> choice && choice == "m") {
@@ -158,7 +160,7 @@ void output(const std::vector<studentas> &s) {
 }
 
 int main() {
-    std::vector<studentas> s;
+    std::vector<student> s;
     input(s);
     output(s);
     return 0;
