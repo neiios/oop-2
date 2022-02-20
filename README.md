@@ -1,5 +1,11 @@
 # 1-oji objektinio programavimo užduotis
 
+## Versijos v0.1 aprašymas
+
+Pabaigta programos v0.1 versija. Studentų namų darbai gali būti saugomi arba į C masyvą, arba į vektorių.
+
+Paleisti galima komandinėje eilutėje su g++ kompiliuojant tinkamą failą, arba kaip CMake projektą.
+
 ## Užduoties formuluotė
 
 - Parašykite programą, kuri nuskaito šiuos studentų duomenis:
