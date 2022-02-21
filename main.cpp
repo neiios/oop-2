@@ -160,6 +160,7 @@ void output(const std::vector<student> &s) {
 }
 
 int main() {
+    setlocale(LC_ALL, "en_US.UTF-8");
     std::vector<student> s;
     input(s);
     output(s);
