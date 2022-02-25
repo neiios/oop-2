@@ -115,7 +115,7 @@ void input(vector<student> &s) {
         if (gradeCount > 0) {
             string choice;
             cout << "Sugeneruoti pažymius automatiškai (T arba N)? ";
-            if (cin >> choice && choice == "T") {
+            if (cin >> choice && (choice == "T" || choice == "t")) {
                 randomizeGrades(sTemp, gradeCount);
             } else {
                 inputGrades(sTemp, gradeCount);
@@ -139,7 +139,7 @@ void input(vector<student> &s) {
 
         cout << "Ar norite įvesti dar vieno studento pažymius (T arba N)? ";
         string continueInput;
-        if (cin >> continueInput && (continueInput != "T" || continueInput != "t")) {
+        if (cin >> continueInput && continueInput != "T" && continueInput != "t") {
             return;
         }
     }
