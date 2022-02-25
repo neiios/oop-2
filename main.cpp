@@ -8,9 +8,14 @@
 #include <random>
 #include <fstream>
 
+using std::cout;
+using std::cin;
+using std::string;
+using std::vector;
+
 struct student {
-    std::string firstName, lastName;
-    std::vector<int> grades;
+    string firstName, lastName;
+    vector<int> grades;
     int gradeCount = 0;
     int examGrade = 0;
     double finalGradeAvg = 0, finalGradeMedian = 0;
@@ -46,12 +51,12 @@ void findMedian(student &s) {
 void inputGrades(student &s) {
     for (size_t j = 0; j < s.gradeCount; j++) {
         int temp;
-        std::cout << "Įveskite pažymį Nr." << j + 1 << ": ";
+        cout << "Įveskite pažymį Nr." << j + 1 << ": ";
         // input check
-        while (!(std::cin >> temp) || temp < -1 || temp > 10) {
-            std::cout << "Klaidingas pažymys, bandikyte įvesti dar kartą: ";
-            std::cin.clear(); // Clear error flags
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        while (!(cin >> temp) || temp < -1 || temp > 10) {
+            cout << "Klaidingas pažymys, bandikyte įvesti dar kartą: ";
+            cin.clear(); // Clear error flags
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
         s.grades.push_back(temp);
     }
@@ -64,22 +69,22 @@ void randomizeGrades(student &s) {
 
     for (size_t j = 0; j < s.gradeCount; j++) {
         int temp = dist(engine);
-        std::cout << temp << " ";
+        cout << temp << " ";
         s.grades.push_back(temp);
     }
-    std::cout << "\n";
+    cout << "\n";
 }
 
 void inputGradesEndless(student &s) {
     // endless loop
     for (;;) {
         int temp = 0;
-        std::cout << "Įveskite nauja pažymį (įveskite \"-1\", kai norite baigti įvedimą): ";
+        cout << "Įveskite nauja pažymį (įveskite \"-1\", kai norite baigti įvedimą): ";
         // input check
-        while (!(std::cin >> temp) || temp < -1 || temp > 10) {
-            std::cout << "Klaidingas pažymys, bandikyte įvesti dar kartą: ";
-            std::cin.clear(); // Clear error flags
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        while (!(cin >> temp) || temp < -1 || temp > 10) {
+            cout << "Klaidingas pažymys, bandikyte įvesti dar kartą: ";
+            cin.clear(); // Clear error flags
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
         // exit the for loop if temp == -1
         if (temp == -1) {
@@ -91,26 +96,26 @@ void inputGradesEndless(student &s) {
     s.gradeCount = s.grades.size();
 }
 
-void input(std::vector<student> &s) {
+void input(vector<student> &s) {
     for (int i = 0;; i++) {
         s.emplace_back();
-        std::cout << "Įveskite studento vardą: ";
-        std::cin >> s[i].firstName;
-        std::cout << "Įveskite studento pavardę: ";
-        std::cin >> s[i].lastName;
-        std::cout << "Ar žinote kiek pažymių turi studentas" << " (\"-1\" jeigu nežinote)? ";
+        cout << "Įveskite studento vardą: ";
+        cin >> s[i].firstName;
+        cout << "Įveskite studento pavardę: ";
+        cin >> s[i].lastName;
+        cout << "Ar žinote kiek pažymių turi studentas" << " (\"-1\" jeigu nežinote)? ";
         // input check
-        while (!(std::cin >> s[i].gradeCount) || s[i].gradeCount < -1) {
-            std::cout << "Klaidingas kiekis, bandikyte įvesti dar kartą: ";
-            std::cin.clear(); // Clear error flags
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        while (!(cin >> s[i].gradeCount) || s[i].gradeCount < -1) {
+            cout << "Klaidingas kiekis, bandikyte įvesti dar kartą: ";
+            cin.clear(); // Clear error flags
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
 
         // input grades
         if (s[i].gradeCount > 0) {
-            std::string choice;
-            std::cout << "Sugeneruoti pažymius automatiškai (T arba N)? ";
-            if (std::cin >> choice && (choice == "T" || choice == "t")) {
+            string choice;
+            cout << "Sugeneruoti pažymius automatiškai (T arba N)? ";
+            if (cin >> choice && (choice == "T" || choice == "t")) {
                 randomizeGrades(s[i]);
             } else {
                 inputGrades(s[i]);
@@ -120,21 +125,20 @@ void input(std::vector<student> &s) {
             inputGradesEndless(s[i]);
         }
 
-        std::cout << "Įveskite studento egzamino pažymį: ";
-        while (!(std::cin >> s[i].examGrade) || s[i].examGrade < -1 ||
+        cout << "Įveskite studento egzamino pažymį: ";
+        while (!(cin >> s[i].examGrade) || s[i].examGrade < -1 ||
                s[i].examGrade > 10) {
-            std::cout << "Klaidingas pažymys, bandikyte įvesti dar kartą: ";
-            std::cin.clear(); // Clear error flags
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cout << "Klaidingas pažymys, bandikyte įvesti dar kartą: ";
+            cin.clear(); // Clear error flags
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
 
         findAverage(s[i]);
         findMedian(s[i]);
 
-        std::cout
-                << "Ar norite įvesti dar vieno studento pažymius (T arba N)? ";
-        std::string continueInput;
-        if (std::cin >> continueInput && (continueInput != "T" || continueInput != "t")) {
+        cout << "Ar norite įvesti dar vieno studento pažymius (T arba N)? ";
+        string continueInput;
+        if (cin >> continueInput && (continueInput != "T" || continueInput != "t")) {
             return;
         }
     }
@@ -144,16 +148,16 @@ bool sortByLastName(const student &temp1, const student &temp2) {
     return temp1.lastName < temp2.lastName;
 }
 
-void inputFromFile(std::vector<student> &s){
+void inputFromFile(vector<student> &s){
     std::ifstream fin;
     fin.open("kursiokai.txt");
     if(!fin){
-        std::cout << "Error! File does not exist\n";
+        cout << "Error! File does not exist\n";
         return;
     }
 
     // skip first line
-    std::string line;
+    string line;
     getline(fin, line);
 
     while(getline(fin, line)){
@@ -161,17 +165,17 @@ void inputFromFile(std::vector<student> &s){
         std::istringstream subStr(line);
 
         subStr >> tempStudent.firstName >> tempStudent.lastName;
-        std::cout << tempStudent.firstName << " " << tempStudent.lastName << " ";
+        cout << tempStudent.firstName << " " << tempStudent.lastName << " ";
 
         int tempGrade;
         while(subStr >> tempGrade){
-            std::cout << tempGrade << " ";
+            cout << tempGrade << " ";
             tempStudent.grades.push_back(tempGrade);
         }
 
         tempStudent.examGrade = tempStudent.grades.back();
         tempStudent.grades.pop_back();
-        std::cout << tempStudent.examGrade << "\n";
+        cout << tempStudent.examGrade << "\n";
 
         tempStudent.gradeCount = tempStudent.grades.size();
 
@@ -185,7 +189,7 @@ void inputFromFile(std::vector<student> &s){
     fin.close();
 }
 
-void output(const std::vector<student> &s) {
+void output(const vector<student> &s) {
     printf("\n\n%-15s%-15s%-20s%-20s", "Pavarde", "Vardas", "Galutinis (Vid.)", "Galutinis (Med.)");
     printf("\n------------------------------------------------------------------\n");
     for (const auto &stud: s) {
@@ -196,11 +200,11 @@ void output(const std::vector<student> &s) {
 
 int main() {
     setlocale(LC_ALL, "en_US.UTF-8");
-    std::vector<student> s;
+    vector<student> s;
 
-    std::string choice;
-    std::cout << "Ar norite įvesti studento duomenis iš failo (T arba N)? ";
-    if (std::cin >> choice && (choice == "T" || choice == "t")) {
+    string choice;
+    cout << "Ar norite įvesti studento duomenis iš failo (T arba N)? ";
+    if (cin >> choice && (choice == "T" || choice == "t")) {
         inputFromFile(s);
     } else {
         input(s);
