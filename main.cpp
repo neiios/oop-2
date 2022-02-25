@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <vector>
 #include <ctime>
+#include <random>
 
 struct student {
     std::string firstName, lastName;
@@ -52,13 +53,17 @@ void inputGrades(student &s) {
 }
 
 void randomizeGrades(student &s) {
-    std::srand(std::time(nullptr));
+    std::random_device random_device;
+    std::mt19937 engine(random_device());
+    std::uniform_int_distribution<int> dist(0,10);
+
     for (size_t j = 0; j < s.gradeCount; j++) {
-        // generates the same numbers
-        int temp = std::rand() % 11;
+        int temp = dist(engine);
+        std::cout << temp << " ";
         s.grades.push_back(temp);
         s.finalGradeAvg += temp;
     }
+    std::cout << "\n";
 }
 
 void inputGradesEndless(student &s) {
