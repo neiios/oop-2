@@ -95,14 +95,14 @@ void inputGradesEndless(student &s) {
 }
 
 void input(vector<student> &s) {
-    for (int i = 0;; i++) {
-        s.emplace_back();
+    while(true){
+        student sTemp;
         int gradeCount = 0;
 
         cout << "Įveskite studento vardą: ";
-        cin >> s[i].firstName;
+        cin >> sTemp.firstName;
         cout << "Įveskite studento pavardę: ";
-        cin >> s[i].lastName;
+        cin >> sTemp.lastName;
         cout << "Ar žinote kiek pažymių turi studentas" << " (\"-1\" jeigu nežinote)? ";
         // input check
         while (!(cin >> gradeCount) || gradeCount < -1) {
@@ -115,26 +115,27 @@ void input(vector<student> &s) {
         if (gradeCount > 0) {
             string choice;
             cout << "Sugeneruoti pažymius automatiškai (T arba N)? ";
-            if (cin >> choice && (choice == "T" || choice == "t")) {
-                randomizeGrades(s[i], gradeCount);
+            if (cin >> choice && choice == "T") {
+                randomizeGrades(sTemp, gradeCount);
             } else {
-                inputGrades(s[i], gradeCount);
+                inputGrades(sTemp, gradeCount);
             }
         }
         if (gradeCount == -1) {
-            inputGradesEndless(s[i]);
+            inputGradesEndless(sTemp);
         }
 
         cout << "Įveskite studento egzamino pažymį: ";
-        while (!(cin >> s[i].examGrade) || s[i].examGrade < -1 ||
-               s[i].examGrade > 10) {
+        while (!(cin >> sTemp.examGrade) || sTemp.examGrade < -1 ||
+               sTemp.examGrade > 10) {
             cout << "Klaidingas pažymys, bandikyte įvesti dar kartą: ";
             cin.clear(); // Clear error flags
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
 
-        findAverage(s[i]);
-        findMedian(s[i]);
+        findAverage(sTemp);
+        findMedian(sTemp);
+        s.push_back(sTemp);
 
         cout << "Ar norite įvesti dar vieno studento pažymius (T arba N)? ";
         string continueInput;
