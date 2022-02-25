@@ -142,25 +142,13 @@ void input(std::vector<student> &s) {
 
 void output(const std::vector<student> &s) {
     std::string choice;
-    std::cout << "Jei norite išvesti medianą įveskite \"M\" (vidurkis - default): ";
-    if (std::cin >> choice && (choice == "m" || choice == "M")) {
-        std::cout << std::left << std::setw(15) << "\n\nPavarde" << std::setw(15) << "Vardas" << std::setw(15)
-                  << "Galutinis (Med.)\n";
-        std::cout << std::string(45, '-') << "\n";
-        for (const auto &stud: s) {
-            std::cout << std::left << std::setw(15) << stud.firstName
-                      << std::setw(15) << stud.lastName << std::setw(15)
-                      << std::fixed << std::setprecision(2) << stud.finalGradeMedian << "\n";
-        }
-    } else {
-        std::cout << std::left << std::setw(15) << "\n\nPavarde" << std::setw(15) << "Vardas" << std::setw(15)
-                  << "Galutinis (Vid.)\n";
-        std::cout << std::string(45, '-') << "\n";
-        for (const auto &stud: s) {
-            std::cout << std::left << std::setw(15) << stud.lastName
-                      << std::setw(15) << stud.firstName << std::setw(15)
-                      << std::fixed << std::setprecision(2) << stud.finalGradeAvg << "\n";
-        }
+    std::cout << std::left << std::setw(15) << "\n\nPavarde" << std::setw(15)
+              << "Vardas" << std::setw(20) << "Galutinis (Vid.)" << "Galutinis (Med.)\n";
+    std::cout << std::string(60, '-') << "\n";
+    for (const auto &stud: s) {
+        std::cout << std::left << std::setw(15) << stud.lastName
+                  << std::setw(15) << stud.firstName << std::setw(20) << std::fixed << std::setprecision(2)
+                  << stud.finalGradeAvg << stud.finalGradeMedian << "\n";
     }
 }
 
