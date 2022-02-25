@@ -97,7 +97,7 @@ void input(std::vector<student> &s) {
         std::cin >> s[i].lastName;
         std::cout
                 << "Ar žinote kiek pažymių turi studentas"
-                << " (\"-1\" jeigu nežinote n)? ";
+                << " (\"-1\" jeigu nežinote)? ";
         // input check
         while (!(std::cin >> s[i].gradeCount) || s[i].gradeCount < -1) {
             std::cout << "Klaidingas kiekis, bandikyte įvesti dar kartą: ";
@@ -109,8 +109,8 @@ void input(std::vector<student> &s) {
         if (s[i].gradeCount > 0) {
             std::string choice;
             std::cout
-                    << "Sugeneruoti pažymius automatiškai (taip arba ne)? ";
-            if (std::cin >> choice && choice == "taip") {
+                    << "Sugeneruoti pažymius automatiškai (T arba N)? ";
+            if (std::cin >> choice && (choice == "T" || choice == "t")) {
                 randomizeGrades(s[i]);
             } else {
                 inputGrades(s[i]);
@@ -132,9 +132,9 @@ void input(std::vector<student> &s) {
         findMedian(s[i]);
 
         std::cout
-                << "Ar norite įvesti dar vieno studento pažymius (taip arba ne)? ";
+                << "Ar norite įvesti dar vieno studento pažymius (T arba N)? ";
         std::string continueInput;
-        if (std::cin >> continueInput && continueInput != "taip") {
+        if (std::cin >> continueInput && (continueInput != "T" || continueInput != "t")) {
             return;
         }
     }
@@ -142,8 +142,8 @@ void input(std::vector<student> &s) {
 
 void output(const std::vector<student> &s) {
     std::string choice;
-    std::cout << "Jei norite išvesti medianą įveskite \"m\" (vidurkis - default): ";
-    if (std::cin >> choice && choice == "m") {
+    std::cout << "Jei norite išvesti medianą įveskite \"M\" (vidurkis - default): ";
+    if (std::cin >> choice && (choice == "m" || choice == "M")) {
         std::cout << std::left << std::setw(15) << "\n\nPavarde" << std::setw(15) << "Vardas" << std::setw(15)
                   << "Galutinis (Med.)\n";
         std::cout << std::string(45, '-') << "\n";
