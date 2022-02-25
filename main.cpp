@@ -186,14 +186,11 @@ void inputFromFile(std::vector<student> &s){
 }
 
 void output(const std::vector<student> &s) {
-    std::string choice;
-    std::cout << std::left << std::setw(15) << "\n\nPavarde" << std::setw(15)
-              << "Vardas" << std::setw(20) << "Galutinis (Vid.)" << "Galutinis (Med.)\n";
-    std::cout << std::string(60, '-') << "\n";
+    printf("\n\n%-15s%-15s%-20s%-20s", "Pavarde", "Vardas", "Galutinis (Vid.)", "Galutinis (Med.)");
+    printf("\n------------------------------------------------------------------\n");
     for (const auto &stud: s) {
-        std::cout << std::left << std::setw(15) << stud.lastName
-                  << std::setw(15) << stud.firstName << std::setw(20) << std::fixed << std::setprecision(2)
-                  << stud.finalGradeAvg << stud.finalGradeMedian << "\n";
+        printf("%-15s%-15s%-20.2f%-20.2f\n", stud.lastName.c_str(),
+               stud.firstName.c_str(), stud.finalGradeAvg, stud.finalGradeMedian);
     }
 }
 
