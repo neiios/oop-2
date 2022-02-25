@@ -1,5 +1,12 @@
 # 1-oji objektinio programavimo užduotis
 
+## Versijos v0.2 aprašymas
+
+Pabaigta programos v0.2 versija. Duomenis galima nuskaityti iš failo. 
+Outputas yra gražiai išlygiuotas ir studentai yra surūšiuoti pagal pavardes.
+
+Paleisti galima komandinėje eilutėje su g++ kompiliuojant tinkamą failą, arba kaip CMake projektą.
+
 ## Versijos v0.1 aprašymas
 
 Pabaigta programos v0.1 versija. Studentų namų darbai gali būti saugomi arba į C masyvą, arba į vektorių.
