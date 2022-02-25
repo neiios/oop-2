@@ -17,6 +17,11 @@ struct student {
 };
 
 void findAverage(student &s) {
+    s.finalGradeAvg = 0;
+    for (auto grade: s.grades) {
+        s.finalGradeAvg += grade;
+    }
+
     if (s.gradeCount == 0) {
         s.finalGradeAvg = s.examGrade * 0.6;
     } else {
@@ -49,7 +54,6 @@ void inputGrades(student &s) {
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
         s.grades.push_back(temp);
-        s.finalGradeAvg += temp;
     }
 }
 
@@ -62,7 +66,6 @@ void randomizeGrades(student &s) {
         int temp = dist(engine);
         std::cout << temp << " ";
         s.grades.push_back(temp);
-        s.finalGradeAvg += temp;
     }
     std::cout << "\n";
 }
@@ -84,7 +87,6 @@ void inputGradesEndless(student &s) {
         }
 
         s.grades.push_back(temp);
-        s.finalGradeAvg += temp;
     }
     s.gradeCount = s.grades.size();
 }
@@ -96,9 +98,7 @@ void input(std::vector<student> &s) {
         std::cin >> s[i].firstName;
         std::cout << "Įveskite studento pavardę: ";
         std::cin >> s[i].lastName;
-        std::cout
-                << "Ar žinote kiek pažymių turi studentas"
-                << " (\"-1\" jeigu nežinote)? ";
+        std::cout << "Ar žinote kiek pažymių turi studentas" << " (\"-1\" jeigu nežinote)? ";
         // input check
         while (!(std::cin >> s[i].gradeCount) || s[i].gradeCount < -1) {
             std::cout << "Klaidingas kiekis, bandikyte įvesti dar kartą: ";
@@ -140,10 +140,11 @@ void input(std::vector<student> &s) {
     }
 }
 
-void inputFromFile(std::vector<student> &s){
-    student tempStudent;
-    int gradesInFile = 15;
+bool sortByLastName(const student &temp1, const student &temp2) {
+    return temp1.lastName < temp2.lastName;
+}
 
+void inputFromFile(std::vector<student> &s){
     std::ifstream fin;
     fin.open("kursiokai.txt");
     if(!fin){
@@ -152,21 +153,26 @@ void inputFromFile(std::vector<student> &s){
     }
 
     // skip first line
-    std::string temp;
-    getline(fin, temp);
+    std::string line;
+    getline(fin, line);
 
-    while(!fin.eof()){
-        fin >> tempStudent.firstName >> tempStudent.lastName;
+    while(getline(fin, line)){
+        student tempStudent;
+        std::istringstream subStr(line);
+
+        subStr >> tempStudent.firstName >> tempStudent.lastName;
         std::cout << tempStudent.firstName << " " << tempStudent.lastName << " ";
-        for (int i = 0; i < gradesInFile; ++i) {
-            int tempGrade;
-            fin >> tempGrade;
+
+        int tempGrade;
+        while(subStr >> tempGrade){
             std::cout << tempGrade << " ";
             tempStudent.grades.push_back(tempGrade);
-            tempStudent.finalGradeAvg += tempGrade;
         }
-        fin >> tempStudent.examGrade;
+
+        tempStudent.examGrade = tempStudent.grades.back();
+        tempStudent.grades.pop_back();
         std::cout << tempStudent.examGrade << "\n";
+
         tempStudent.gradeCount = tempStudent.grades.size();
 
         findAverage(tempStudent);
@@ -175,6 +181,7 @@ void inputFromFile(std::vector<student> &s){
         s.push_back(tempStudent);
     }
 
+    std::sort(s.begin(), s.end(), sortByLastName);
     fin.close();
 }
 
