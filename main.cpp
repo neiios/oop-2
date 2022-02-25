@@ -4,7 +4,6 @@
 #include <string>
 #include <algorithm>
 #include <vector>
-#include <ctime>
 #include <random>
 #include <fstream>
 
@@ -183,12 +182,13 @@ void inputFromFile(vector<student> &s){
 
         s.push_back(tempStudent);
     }
-
-    std::sort(s.begin(), s.end(), sortByLastName);
     fin.close();
 }
 
-void output(const vector<student> &s) {
+void output(vector<student> &s) {
+    // sort by last name before output
+    std::sort(s.begin(), s.end(), sortByLastName);
+
     printf("\n\n%-15s%-15s%-20s%-20s", "Pavarde", "Vardas", "Galutinis (Vid.)", "Galutinis (Med.)");
     printf("\n------------------------------------------------------------------\n");
     for (const auto &stud: s) {
