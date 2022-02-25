@@ -6,6 +6,7 @@
 #include <vector>
 #include <ctime>
 #include <random>
+#include <fstream>
 
 struct student {
     std::string firstName, lastName;
@@ -108,8 +109,7 @@ void input(std::vector<student> &s) {
         // input grades
         if (s[i].gradeCount > 0) {
             std::string choice;
-            std::cout
-                    << "Sugeneruoti pažymius automatiškai (T arba N)? ";
+            std::cout << "Sugeneruoti pažymius automatiškai (T arba N)? ";
             if (std::cin >> choice && (choice == "T" || choice == "t")) {
                 randomizeGrades(s[i]);
             } else {
@@ -140,6 +140,44 @@ void input(std::vector<student> &s) {
     }
 }
 
+void inputFromFile(std::vector<student> &s){
+    student tempStudent;
+    int gradesInFile = 15;
+
+    std::ifstream fin;
+    fin.open("kursiokai.txt");
+    if(!fin){
+        std::cout << "Error! File does not exist\n";
+        return;
+    }
+
+    // skip first line
+    std::string temp;
+    getline(fin, temp);
+
+    while(!fin.eof()){
+        fin >> tempStudent.firstName >> tempStudent.lastName;
+        std::cout << tempStudent.firstName << " " << tempStudent.lastName << " ";
+        for (int i = 0; i < gradesInFile; ++i) {
+            int tempGrade;
+            fin >> tempGrade;
+            std::cout << tempGrade << " ";
+            tempStudent.grades.push_back(tempGrade);
+            tempStudent.finalGradeAvg += tempGrade;
+        }
+        fin >> tempStudent.examGrade;
+        std::cout << tempStudent.examGrade << "\n";
+        tempStudent.gradeCount = tempStudent.grades.size();
+
+        findAverage(tempStudent);
+        findMedian(tempStudent);
+
+        s.push_back(tempStudent);
+    }
+
+    fin.close();
+}
+
 void output(const std::vector<student> &s) {
     std::string choice;
     std::cout << std::left << std::setw(15) << "\n\nPavarde" << std::setw(15)
@@ -155,7 +193,15 @@ void output(const std::vector<student> &s) {
 int main() {
     setlocale(LC_ALL, "en_US.UTF-8");
     std::vector<student> s;
-    input(s);
+
+    std::string choice;
+    std::cout << "Ar norite įvesti studento duomenis iš failo (T arba N)? ";
+    if (std::cin >> choice && (choice == "T" || choice == "t")) {
+        inputFromFile(s);
+    } else {
+        input(s);
+    }
+
     output(s);
     return 0;
 }
