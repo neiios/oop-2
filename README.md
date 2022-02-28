@@ -1,5 +1,11 @@
 # 1-oji objektinio programavimo užduotis
 
+## Versijos v0.3 aprašymas
+Pabaigta programos v0.3 versija. Programos struktūra buvo pertvarkyta, visi source failai dabar yra saugomi src aplanke. 
+Try-catch blokas yra panaudotas failo atidarymui tikrinti.
+
+Paleisti galima komandinėje eilutėje su g++ kompiliuojant tinkamus failus, arba kaip CMake projektą.
+
 ## Versijos v0.2 aprašymas
 
 Pabaigta programos v0.2 versija. Duomenis galima nuskaityti iš failo. 
