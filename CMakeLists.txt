@@ -3,4 +3,4 @@ project(objektinio-programavimo-uzduotis VERSION 0.1.0)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(main main.cpp helper-functions.cpp helper-functions.h new-data-types.h input-output.cpp input-output.h)
+add_executable(main src/main.cpp src/helper-functions.cpp src/helper-functions.h src/new-data-types.h src/input-output.cpp src/input-output.h)
