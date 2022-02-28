@@ -115,10 +115,15 @@ void input(vector<student> &s) {
 
 void inputFromFile(vector<student> &s){
     std::ifstream fin;
-    fin.open("kursiokai.txt");
-    if(!fin){
-        cout << "File does not exist!" << "\n";
-        return;
+
+    try {
+        fin.open("kursiokai.txt");
+        if(!fin.is_open()){
+            throw std::runtime_error("Failas neegzistuoja!");
+        }
+    } catch (const std::exception &e) {
+        fin.close();
+        std::terminate();
     }
 
     // skip first line
@@ -130,17 +135,14 @@ void inputFromFile(vector<student> &s){
         std::istringstream subStr(line);
 
         subStr >> tempStudent.firstName >> tempStudent.lastName;
-        cout << tempStudent.firstName << " " << tempStudent.lastName << " ";
 
         int tempGrade;
         while(subStr >> tempGrade){
-            cout << tempGrade << " ";
             tempStudent.grades.push_back(tempGrade);
         }
 
         tempStudent.examGrade = tempStudent.grades.back();
         tempStudent.grades.pop_back();
-        cout << tempStudent.examGrade << "\n";
 
         findAverage(tempStudent);
         findMedian(tempStudent);
