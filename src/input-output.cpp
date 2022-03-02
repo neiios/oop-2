@@ -159,7 +159,7 @@ void output(vector<student> &s) {
     printf("\n\n%-15s%-15s%-20s%-20s", "Pavarde", "Vardas", "Galutinis (Vid.)", "Galutinis (Med.)");
     printf("\n------------------------------------------------------------------\n");
     for (const auto &stud: s) {
-        printf("%-15s%-15s%-20.2f%-20.2f\n", stud.lastName.c_str(),
+        printf("%-15s%-15s%-20.2lf%-20.2lf\n", stud.lastName.c_str(),
                stud.firstName.c_str(), stud.finalGradeAvg, stud.finalGradeMedian);
     }
 }
