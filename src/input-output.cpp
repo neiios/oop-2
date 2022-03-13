@@ -37,10 +37,11 @@ void randomizeGrades(student &s, int gradeCount) {
 
     for (size_t j = 0; j < gradeCount; j++) {
         int temp = dist(engine);
-        cout << temp << " ";
+//        cout << temp << " ";
         s.grades.push_back(temp);
     }
-    cout << "\n";
+    s.examGrade = dist(engine);
+//    cout << "\n";
 }
 
 void inputGradesEndless(student &s) {
@@ -152,7 +153,57 @@ void inputFromFile(vector<student> &s){
     fin.close();
 }
 
+void generateStudents(vector<student> &s){
+    int gradeCount, studentCount;
+    cout << "Kiek pažymių turi studentai? ";
+    while (!(cin >> gradeCount) || gradeCount < -1) {
+        cout << "Klaidingas kiekis, bandikyte įvesti dar kartą: ";
+        cin.clear(); // Clear error flags
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+    cout << "Kiek yra studentų? ";
+    while (!(cin >> studentCount) || studentCount < -1) {
+        cout << "Klaidingas kiekis, bandikyte įvesti dar kartą: ";
+        cin.clear(); // Clear error flags
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+    for (int i = 1; i <= studentCount; ++i) {
+        student stud;
+        stud.firstName = "Vardas" + std::to_string(i);
+        stud.lastName = "Pavarde" + std::to_string(i);
+        randomizeGrades(stud, gradeCount);
+        s.push_back(stud);
+    }
+}
+
+void outputToFile(const vector<student> &s){
+    if(s.empty()){
+        cout << "Nėra studentų.\n";
+        return;
+    }
+
+    FILE *file;
+    file = fopen(("kursiokai" + std::to_string(s.size()) + ".txt").c_str(), "w");
+
+    string buffer;
+    for (const auto &stud: s) {
+        buffer.append(stud.firstName + " " + stud.lastName + " ");
+        for(const auto &grade:stud.grades){
+            buffer.append(std::to_string(grade) + " ");
+        }
+        buffer.append(std::to_string(stud.examGrade) + "\n");
+    }
+
+    fprintf(file, "%s\n", buffer.c_str());
+    fclose(file);
+}
+
 void output(vector<student> &s) {
+    if(s.empty()){
+        cout << "Nėra studentų.\n";
+        return;
+    }
+
     // sort by last name before output
     std::sort(s.begin(), s.end(), sortByLastName);
 
