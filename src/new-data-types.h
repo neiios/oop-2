@@ -4,11 +4,9 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
 struct student {
-    string firstName, lastName;
-    vector<int> grades;
+    std::string firstName, lastName;
+    std::vector<int> grades;
     int examGrade = 0;
     double finalGradeAvg = 0, finalGradeMedian = 0;
 };
