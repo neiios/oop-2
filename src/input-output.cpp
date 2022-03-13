@@ -16,6 +16,11 @@ using std::cin;
 using std::string;
 using std::vector;
 
+// optimization number 1
+std::random_device random_device;
+std::mt19937 engine(random_device());
+std::uniform_int_distribution<int> dist(0,10);
+
 void inputGrades(student &s, int gradeCount) {
     for (size_t j = 0; j < gradeCount; j++) {
         int temp;
@@ -31,9 +36,9 @@ void inputGrades(student &s, int gradeCount) {
 }
 
 void randomizeGrades(student &s, int gradeCount) {
-    std::random_device random_device;
-    std::mt19937 engine(random_device());
-    std::uniform_int_distribution<int> dist(0,10);
+//    std::random_device random_device;
+//    std::mt19937 engine(random_device());
+//    std::uniform_int_distribution<int> dist(0,10);
 
     for (size_t j = 0; j < gradeCount; j++) {
         int temp = dist(engine);
@@ -167,6 +172,10 @@ void generateStudents(vector<student> &s){
         cin.clear(); // Clear error flags
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
+
+    // optimization number 2
+    s.reserve(studentCount);
+
     for (int i = 1; i <= studentCount; ++i) {
         student stud;
         stud.firstName = "Vardas" + std::to_string(i);
