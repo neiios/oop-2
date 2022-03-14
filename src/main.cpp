@@ -25,7 +25,7 @@ int main() {
     cin >> choice;
     switch (choice) {
         case 1:
-            inputFromFile(s);
+            inputFromFile(s, true);
             output(s);
             break;
         case 2:

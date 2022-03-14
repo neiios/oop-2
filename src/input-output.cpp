@@ -111,7 +111,7 @@ void input(vector<student> &s) {
     }
 }
 
-void inputFromFile(vector<student> &s){
+void inputFromFile(vector<student> &s, bool removeFirstLine){
     std::ifstream fin;
 
     try {
@@ -126,7 +126,8 @@ void inputFromFile(vector<student> &s){
 
     // skip first line
     string line;
-    getline(fin, line);
+    if(removeFirstLine)
+        getline(fin, line);
 
     while(getline(fin, line)){
         student tempStudent;
