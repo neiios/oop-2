@@ -150,22 +150,29 @@ void inputFromFile(vector<student> &s){
     fin.close();
 }
 
-void generateStudents(vector<student> &s, const int &gradeCount, const int &studentCount){
+void generateStudents(const int &gradeCount, const int &studentCount){
     std::random_device random_device;
     std::mt19937 engine(random_device());
     std::uniform_int_distribution<int> dist(0,10);
-    // optimization number 2
-    s.reserve(studentCount);
 
+    FILE *file;
+    file = fopen(("kursiokai" + std::to_string(studentCount) + ".txt").c_str(), "w");
+
+    string buffer;
     for (int i = 1; i <= studentCount; ++i) {
         student stud;
         stud.firstName = "Vardas" + std::to_string(i);
         stud.lastName = "Pavarde" + std::to_string(i);
         randomizeGrades(stud, gradeCount, engine, dist);
-        findAverage(stud);
-        findMedian(stud);
-        s.push_back(stud);
+        buffer.append(stud.firstName + " " + stud.lastName + " ");
+        for(const auto &grade:stud.grades){
+            buffer.append(std::to_string(grade) + " ");
+        }
+        buffer.append(std::to_string(stud.examGrade) + "\n");
     }
+
+    fprintf(file, "%s\n", buffer.c_str());
+    fclose(file);
 }
 
 void outputToFile(const vector<student> &s){

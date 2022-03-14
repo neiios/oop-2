@@ -6,7 +6,6 @@
 
 #include "new-data-types.h"
 #include "input-output.h"
-#include "helper-functions.h"
 
 using std::cout;
 using std::cin;
@@ -47,8 +46,7 @@ int main() {
                 cin.clear(); // Clear error flags
                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }
-            generateStudents(s, gradeCount, studentCount);
-            outputToFile(s);
+            generateStudents(gradeCount, studentCount);
             break;
         default:
             cout << "Neteisingas pasirinkimas!\n";
