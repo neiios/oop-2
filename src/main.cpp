@@ -2,6 +2,7 @@
 #include <string>
 #include <algorithm>
 #include <vector>
+#include <limits>
 
 #include "new-data-types.h"
 #include "input-output.h"
@@ -33,7 +34,20 @@ int main() {
             output(s);
             break;
         case 3:
-            generateStudents(s);
+            int gradeCount, studentCount;
+            cout << "Kiek pažymių turi studentai? ";
+            while (!(cin >> gradeCount) || gradeCount < -1) {
+                cout << "Klaidingas kiekis, bandikyte įvesti dar kartą: ";
+                cin.clear(); // Clear error flags
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            }
+            cout << "Kiek yra studentų? ";
+            while (!(cin >> studentCount) || studentCount < -1) {
+                cout << "Klaidingas kiekis, bandikyte įvesti dar kartą: ";
+                cin.clear(); // Clear error flags
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            }
+            generateStudents(s, gradeCount, studentCount);
             outputToFile(s);
             break;
         default:

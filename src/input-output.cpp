@@ -1,4 +1,3 @@
-#include "input-output.h"
 #include <iomanip>
 #include <iostream>
 #include <limits>
@@ -10,16 +9,12 @@
 
 #include "new-data-types.h"
 #include "helper-functions.h"
+#include "input-output.h"
 
 using std::cout;
 using std::cin;
 using std::string;
 using std::vector;
-
-// optimization number 1
-std::random_device random_device;
-std::mt19937 engine(random_device());
-std::uniform_int_distribution<int> dist(0,10);
 
 void inputGrades(student &s, int gradeCount) {
     for (size_t j = 0; j < gradeCount; j++) {
@@ -35,40 +30,37 @@ void inputGrades(student &s, int gradeCount) {
     }
 }
 
-void randomizeGrades(student &s, int gradeCount) {
+void randomizeGrades(student &s, const int &gradeCount, std::mt19937 &engine, std::uniform_int_distribution<int> &dist) {
 //    std::random_device random_device;
 //    std::mt19937 engine(random_device());
 //    std::uniform_int_distribution<int> dist(0,10);
 
     for (size_t j = 0; j < gradeCount; j++) {
         int temp = dist(engine);
-//        cout << temp << " ";
         s.grades.push_back(temp);
     }
     s.examGrade = dist(engine);
-//    cout << "\n";
 }
 
 void inputGradesEndless(student &s) {
-    // endless loop
     for (;;) {
         int temp = 0;
         cout << "Įveskite nauja pažymį (įveskite \"-1\", kai norite baigti įvedimą): ";
-        // input check
         while (!(cin >> temp) || temp < -1 || temp > 10) {
             cout << "Klaidingas pažymys, bandikyte įvesti dar kartą: ";
             cin.clear(); // Clear error flags
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
-        // exit the for loop if temp == -1
-        if (temp == -1) {
+        if (temp == -1)
             break;
-        }
         s.grades.push_back(temp);
     }
 }
 
 void input(vector<student> &s) {
+    std::random_device random_device;
+    std::mt19937 engine(random_device());
+    std::uniform_int_distribution<int> dist(0,10);
     while(true){
         student sTemp;
         int gradeCount = 0;
@@ -90,7 +82,7 @@ void input(vector<student> &s) {
             string choice;
             cout << "Sugeneruoti pažymius automatiškai (T arba N)? ";
             if (cin >> choice && (choice == "T" || choice == "t")) {
-                randomizeGrades(sTemp, gradeCount);
+                randomizeGrades(sTemp, gradeCount, engine, dist);
             } else {
                 inputGrades(sTemp, gradeCount);
             }
@@ -158,21 +150,10 @@ void inputFromFile(vector<student> &s){
     fin.close();
 }
 
-void generateStudents(vector<student> &s){
-    int gradeCount, studentCount;
-    cout << "Kiek pažymių turi studentai? ";
-    while (!(cin >> gradeCount) || gradeCount < -1) {
-        cout << "Klaidingas kiekis, bandikyte įvesti dar kartą: ";
-        cin.clear(); // Clear error flags
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    }
-    cout << "Kiek yra studentų? ";
-    while (!(cin >> studentCount) || studentCount < -1) {
-        cout << "Klaidingas kiekis, bandikyte įvesti dar kartą: ";
-        cin.clear(); // Clear error flags
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    }
-
+void generateStudents(vector<student> &s, const int &gradeCount, const int &studentCount){
+    std::random_device random_device;
+    std::mt19937 engine(random_device());
+    std::uniform_int_distribution<int> dist(0,10);
     // optimization number 2
     s.reserve(studentCount);
 
@@ -180,7 +161,7 @@ void generateStudents(vector<student> &s){
         student stud;
         stud.firstName = "Vardas" + std::to_string(i);
         stud.lastName = "Pavarde" + std::to_string(i);
-        randomizeGrades(stud, gradeCount);
+        randomizeGrades(stud, gradeCount, engine, dist);
         s.push_back(stud);
     }
 }
