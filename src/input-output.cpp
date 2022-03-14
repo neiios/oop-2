@@ -162,6 +162,8 @@ void generateStudents(vector<student> &s, const int &gradeCount, const int &stud
         stud.firstName = "Vardas" + std::to_string(i);
         stud.lastName = "Pavarde" + std::to_string(i);
         randomizeGrades(stud, gradeCount, engine, dist);
+        findAverage(stud);
+        findMedian(stud);
         s.push_back(stud);
     }
 }
