@@ -100,7 +100,7 @@ void input(vector<student> &s) {
         }
 
         findAverage(sTemp);
-        findMedian(sTemp);
+        sTemp.finalGradeMedian = findMedian(sTemp);
         s.push_back(sTemp);
 
         cout << "Ar norite įvesti dar vieno studento pažymius (T arba N)? ";
@@ -111,11 +111,11 @@ void input(vector<student> &s) {
     }
 }
 
-void inputFromFile(vector<student> &s, bool removeFirstLine){
+void inputFromFile(vector<student> &s, bool removeFirstLine, const string &filename){
     std::ifstream fin;
 
     try {
-        fin.open("kursiokai.txt");
+        fin.open(filename);
         if(!fin.is_open()){
             throw std::runtime_error("Failas neegzistuoja!");
         }
@@ -144,7 +144,7 @@ void inputFromFile(vector<student> &s, bool removeFirstLine){
         tempStudent.grades.pop_back();
 
         findAverage(tempStudent);
-        findMedian(tempStudent);
+        tempStudent.finalGradeMedian = findMedian(tempStudent);
 
         s.push_back(tempStudent);
     }
@@ -172,30 +172,42 @@ void generateStudents(const int &gradeCount, const int &studentCount){
         buffer.append(std::to_string(stud.examGrade) + "\n");
     }
 
-    fprintf(file, "%s\n", buffer.c_str());
+    fprintf(file, "%s", buffer.c_str());
     fclose(file);
 }
 
-void outputToFile(const vector<student> &s){
-    if(s.empty()){
-        cout << "Nėra studentų.\n";
-        return;
-    }
+void divideFile(const int &gradeCount, const int &studentCount){
+    FILE *fileVarg, *fileGalv;
+    fileVarg = fopen(("vargsiukai" + std::to_string(studentCount) + ".txt").c_str(), "w");
+    fileGalv = fopen(("galvociai" + std::to_string(studentCount) + ".txt").c_str(), "w");
 
-    FILE *file;
-    file = fopen(("kursiokai" + std::to_string(s.size()) + ".txt").c_str(), "w");
+    string bufferVarg, bufferGalv;
+    vector<student> s;
+    s.reserve(studentCount);
+    string filename = "kursiokai" + std::to_string(studentCount) + ".txt";
+    inputFromFile(s, false, filename);
 
-    string buffer;
     for (const auto &stud: s) {
-        buffer.append(stud.firstName + " " + stud.lastName + " ");
-        for(const auto &grade:stud.grades){
-            buffer.append(std::to_string(grade) + " ");
+        if(stud.finalGradeAvg < 5){
+            bufferVarg.append(stud.firstName + " " + stud.lastName + " ");
+            for(const auto &grade:stud.grades){
+                bufferVarg.append(std::to_string(grade) + " ");
+            }
+            bufferVarg.append(std::to_string(stud.examGrade) + "\n");
+        } else {
+            bufferGalv.append(stud.firstName + " " + stud.lastName + " ");
+            for(const auto &grade:stud.grades){
+                bufferGalv.append(std::to_string(grade) + " ");
+            }
+            bufferGalv.append(std::to_string(stud.examGrade) + "\n");
         }
-        buffer.append(std::to_string(stud.examGrade) + "\n");
     }
 
-    fprintf(file, "%s\n", buffer.c_str());
-    fclose(file);
+    fprintf(fileVarg, "%s", bufferVarg.c_str());
+    fprintf(fileGalv, "%s", bufferGalv.c_str());
+
+    fclose(fileVarg);
+    fclose(fileGalv);
 }
 
 void output(vector<student> &s) {

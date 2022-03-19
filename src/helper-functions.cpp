@@ -14,18 +14,16 @@ void findAverage(student &s) {
     }
 }
 
-void findMedian(student &s) {
-    if (s.grades.empty()) {
-        s.finalGradeMedian = s.examGrade * 0.6;
-        return;
-    }
+// dont change the argument
+double findMedian(student s) {
+    if (s.grades.empty())
+        return s.examGrade * 0.6;
 
     std::sort(s.grades.begin(), s.grades.end());
     if (s.grades.size() % 2 == 0) {
-        s.finalGradeMedian =
-                ((s.grades[s.grades.size() / 2 - 1] + s.grades[s.grades.size() / 2]) / 2.0) * 0.4 + s.examGrade * 0.6;
+        return ((s.grades[s.grades.size() / 2 - 1] + s.grades[s.grades.size() / 2]) / 2.0) * 0.4 + s.examGrade * 0.6;
     } else {
-        s.finalGradeMedian = s.grades[s.grades.size() / 2] * 0.4 + s.examGrade * 0.6;
+        return s.grades[s.grades.size() / 2] * 0.4 + s.examGrade * 0.6;
     }
 }
 

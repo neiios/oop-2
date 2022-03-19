@@ -25,7 +25,7 @@ int main() {
     cin >> choice;
     switch (choice) {
         case 1:
-            inputFromFile(s, true);
+            inputFromFile(s, true, "kursiokai.txt");
             output(s);
             break;
         case 2:
@@ -47,6 +47,7 @@ int main() {
                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }
             generateStudents(gradeCount, studentCount);
+            divideFile(gradeCount, studentCount);
             break;
         default:
             cout << "Neteisingas pasirinkimas!\n";
