@@ -6,6 +6,7 @@
 
 #include "new-data-types.h"
 #include "input-output.h"
+#include "helper-functions.h"
 
 using std::cout;
 using std::cin;
@@ -19,6 +20,7 @@ int main() {
     cout << "Įvesti studentų duomenis iš failo - 1\n";
     cout << "Įvesti studentų duomenis komandinėje eilutėje - 2\n";
     cout << "Sugeneruoti duomenų failą - 3\n";
+    cout << "Testuoti programos veikimo greitį - 4\n";
 
     int choice;
     cout << "Jūsų pasirinkimas: ";
@@ -48,6 +50,9 @@ int main() {
             }
             generateStudents(gradeCount, studentCount);
             divideFile(gradeCount, studentCount);
+            break;
+        case 4:
+            testSpeed(10);
             break;
         default:
             cout << "Neteisingas pasirinkimas!\n";
