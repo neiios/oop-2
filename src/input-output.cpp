@@ -188,7 +188,7 @@ void divideFile(const int &gradeCount, const int &studentCount){
     inputFromFile(s, false, filename);
 
     for (const auto &stud: s) {
-        if(stud.finalGradeAvg < 5){
+        if((stud.finalGradeAvg + stud.finalGradeMedian) / 2 < 5){
             bufferVarg.append(stud.firstName + " " + stud.lastName + " ");
             for(const auto &grade:stud.grades){
                 bufferVarg.append(std::to_string(grade) + " ");

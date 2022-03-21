@@ -38,6 +38,7 @@ bool sortByLastName(const student &temp1, const student &temp2) {
 }
 
 void testSpeed(const int &gradeCount){
+    cout << "-----------------------------------------------\n";
     for(int i = 1000; i <= 10000000; i *= 10){
         int studentCount = i;
         auto start = std::chrono::high_resolution_clock::now();
@@ -51,6 +52,7 @@ void testSpeed(const int &gradeCount){
         auto endDiv = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> diffDiv = endDiv - startDiv;
         cout << i << " Studentų dalijimas į skirtingus failus užtruko: " << diffDiv.count() << " s\n";
-        cout << i << " Pilnas laikas: " << diffDiv.count() +  diff.count() << " s\n\n";
+        cout << i << " Pilnas laikas: " << diffDiv.count() +  diff.count() << " s\n";
+        cout << "-----------------------------------------------\n";
     }
 }
