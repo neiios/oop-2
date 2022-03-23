@@ -21,6 +21,7 @@ int main() {
     cout << "Įvesti studentų duomenis komandinėje eilutėje - 2\n";
     cout << "Sugeneruoti duomenų failą - 3\n";
     cout << "Testuoti programos veikimo greitį - 4\n";
+    cout << "Sugeneruoti naujus failius testavimui - 5\n";
 
     int choice;
     cout << "Jūsų pasirinkimas: ";
@@ -52,7 +53,14 @@ int main() {
             divideFile(gradeCount, studentCount);
             break;
         case 4:
-            testSpeed(10);
+            for(int i = 1000; i <= 10000000; i *= 10){
+                divideFile(10, i);
+            }
+            break;
+        case 5:
+            for(int i = 1000; i <= 10000000; i *= 10){
+                generateStudents(10, i);
+            }
             break;
         default:
             cout << "Neteisingas pasirinkimas!\n";

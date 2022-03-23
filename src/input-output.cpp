@@ -10,11 +10,9 @@
 #include "new-data-types.h"
 #include "helper-functions.h"
 #include "input-output.h"
+#include "timer.h"
 
-using std::cout;
-using std::cin;
-using std::string;
-using std::vector;
+using namespace std;
 
 void inputGrades(student &s, int gradeCount) {
     for (size_t j = 0; j < gradeCount; j++) {
@@ -31,10 +29,6 @@ void inputGrades(student &s, int gradeCount) {
 }
 
 void randomizeGrades(student &s, const int &gradeCount, std::mt19937 &engine, std::uniform_int_distribution<int> &dist) {
-//    std::random_device random_device;
-//    std::mt19937 engine(random_device());
-//    std::uniform_int_distribution<int> dist(0,10);
-
     for (size_t j = 0; j < gradeCount; j++) {
         int temp = dist(engine);
         s.grades.push_back(temp);
@@ -99,8 +93,9 @@ void input(vector<student> &s) {
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
 
-        findAverage(sTemp);
+        sTemp.finalGradeAvg = findAverage(sTemp);
         sTemp.finalGradeMedian = findMedian(sTemp);
+        sTemp.finalGradeMean = (sTemp.finalGradeAvg + sTemp.finalGradeMedian) / 2;
         s.push_back(sTemp);
 
         cout << "Ar norite įvesti dar vieno studento pažymius (T arba N)? ";
@@ -111,7 +106,7 @@ void input(vector<student> &s) {
     }
 }
 
-void inputFromFile(vector<student> &s, bool removeFirstLine, const string &filename){
+void inputFromFile(vector<student> &s, const bool &removeFirstLine, const string &filename){
     std::ifstream fin;
 
     try {
@@ -143,9 +138,9 @@ void inputFromFile(vector<student> &s, bool removeFirstLine, const string &filen
         tempStudent.examGrade = tempStudent.grades.back();
         tempStudent.grades.pop_back();
 
-        findAverage(tempStudent);
+        tempStudent.finalGradeAvg = findAverage(tempStudent);
         tempStudent.finalGradeMedian = findMedian(tempStudent);
-
+        tempStudent.finalGradeMean = (tempStudent.finalGradeAvg + tempStudent.finalGradeMedian) / 2;
         s.push_back(tempStudent);
     }
     fin.close();
@@ -177,37 +172,65 @@ void generateStudents(const int &gradeCount, const int &studentCount){
 }
 
 void divideFile(const int &gradeCount, const int &studentCount){
-    FILE *fileVarg, *fileGalv;
-    fileVarg = fopen(("vargsiukai" + std::to_string(studentCount) + ".txt").c_str(), "w");
-    fileGalv = fopen(("galvociai" + std::to_string(studentCount) + ".txt").c_str(), "w");
-
-    string bufferVarg, bufferGalv;
     vector<student> s;
-    s.reserve(studentCount);
     string filename = "kursiokai" + std::to_string(studentCount) + ".txt";
+
+    Timer t;
+    double partTime, totalTime = 0;
+
     inputFromFile(s, false, filename);
+    ///////////////////////
+    partTime = t.elapsed();
+    totalTime += partTime;
+    cout << studentCount << " Failo nuskaitymo laikas: " << partTime << " s\n";
+    t.reset();
 
-    for (const auto &stud: s) {
-        if((stud.finalGradeAvg + stud.finalGradeMedian) / 2 < 5){
-            bufferVarg.append(stud.firstName + " " + stud.lastName + " ");
-            for(const auto &grade:stud.grades){
-                bufferVarg.append(std::to_string(grade) + " ");
-            }
-            bufferVarg.append(std::to_string(stud.examGrade) + "\n");
-        } else {
-            bufferGalv.append(stud.firstName + " " + stud.lastName + " ");
-            for(const auto &grade:stud.grades){
-                bufferGalv.append(std::to_string(grade) + " ");
-            }
-            bufferGalv.append(std::to_string(stud.examGrade) + "\n");
+    std::sort(s.begin(), s.end(), [](const student &temp1, const student &temp2){
+        return temp1.finalGradeMean < temp2.finalGradeMean;
+    });
+    ///////////////////////
+    partTime = t.elapsed();
+    totalTime += partTime;
+    cout << studentCount << " Rušiavimo laikas: " << partTime << " s\n";
+    t.reset();
+
+    auto it = std::find_if(s.begin(), s.end(), [](const student &temp){
+        return temp.finalGradeMean > 5;
+    });
+    vector<student> galv(it, s.end());
+    s.erase(it, s.end());
+    s.shrink_to_fit();
+    ///////////////////////
+    partTime = t.elapsed();
+    totalTime += partTime;
+    cout << studentCount << " Vektorių padalijimo laikas: " << partTime << " s\n";
+    t.reset();
+
+    ofstream fout("vargsiukai" + std::to_string(studentCount) + ".txt");
+    for(const auto& student:s){
+        fout << student.firstName << " " << student.lastName << " ";
+        for(const auto& grade:student.grades){
+            fout << grade << " ";
         }
+        fout << student.examGrade << "\n";
     }
+    fout.close();
 
-    fprintf(fileVarg, "%s", bufferVarg.c_str());
-    fprintf(fileGalv, "%s", bufferGalv.c_str());
-
-    fclose(fileVarg);
-    fclose(fileGalv);
+    fout.open("galvociai" + std::to_string(studentCount) + ".txt");
+    for(const auto& student:galv){
+        fout << student.firstName << " " << student.lastName << " ";
+        for(const auto& grade:student.grades){
+            fout << grade << " ";
+        }
+        fout << student.examGrade << "\n";
+    }
+    fout.close();
+    ///////////////////////
+    partTime = t.elapsed();
+    totalTime += partTime;
+    cout << studentCount << " Įrašymo į failus laikas: " << partTime << " s\n";
+    cout << studentCount << " Pilnas laikas: " << totalTime << " s\n";
+    cout << "-----------------------------------\n";
 }
 
 void output(vector<student> &s) {
@@ -217,7 +240,9 @@ void output(vector<student> &s) {
     }
 
     // sort by last name before output
-    std::sort(s.begin(), s.end(), sortByLastName);
+    std::sort(s.begin(), s.end(), [](const student &temp1, const student &temp2){
+        return temp1.lastName < temp2.lastName;
+    });
 
     printf("\n\n%-15s%-15s%-20s%-20s", "Pavarde", "Vardas", "Galutinis (Vid.)", "Galutinis (Med.)");
     printf("\n------------------------------------------------------------------\n");
