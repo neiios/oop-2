@@ -191,7 +191,7 @@ void divideFile(const int &gradeCount, const int &studentCount){
     ///////////////////////
     partTime = t.elapsed();
     totalTime += partTime;
-    cout << studentCount << " Rušiavimo laikas: " << partTime << " s\n";
+    cout << studentCount << " Rūšiavimo laikas: " << partTime << " s\n";
     t.reset();
 
     auto it = std::find_if(s.begin(), s.end(), [](const student &temp){

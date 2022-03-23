@@ -1,46 +1,15 @@
 # 1-oji objektinio programavimo užduotis
 
 ## Versijos v0.4 aprašymas
+Programos veikimo laikas, kai kiekvienas studentas turi po 10 pažymių:
 
------------------------------------------------
-
-1000 Studentų sukūrimas užtruko: 0.00114824 s
-
-1000 Studentų dalijimas į skirtingus failus užtruko: 0.00303031 s
-
-1000 Pilnas laikas: 0.00417856 s
-
------------------------------------------------
-10000 Studentų sukūrimas užtruko: 0.00623324 s
-
-10000 Studentų dalijimas į skirtingus failus užtruko: 0.0170715 s
-
-10000 Pilnas laikas: 0.0233047 s
-
------------------------------------------------
-100000 Studentų sukūrimas užtruko: 0.0629616 s
-
-100000 Studentų dalijimas į skirtingus failus užtruko: 0.17233 s
-
-100000 Pilnas laikas: 0.235292 s
-
------------------------------------------------
-
-1000000 Studentų sukūrimas užtruko: 0.636607 s
-
-1000000 Studentų dalijimas į skirtingus failus užtruko: 1.73557 s
-
-1000000 Pilnas laikas: 2.37217 s
-
------------------------------------------------
-
-10000000 Studentų sukūrimas užtruko: 6.49307 s
-
-10000000 Studentų dalijimas į skirtingus failus užtruko: 17.5127 s
-
-10000000 Pilnas laikas: 24.0057 s
-
------------------------------------------------
+|                            | 1000        | 10000       | 100000    | 1000000  | 10000000 |
+|----------------------------|-------------|-------------|-----------|----------|----------|
+| Failo nuskaitymo laikas    | 0.00145373  | 0.0136561   | 0.141471  | 1.38757  | 14.2994  |
+| Rūšiavimo laikas           | 0.000123762 | 0.00133734  | 0.0176121 | 0.222841 | 2.75276  |
+| Vektorių padalijimo laikas | 0.000049613 | 0.000700154 | 0.0116927 | 0.187523 | 2.18616  |
+| Įrašymo į failus laikas    | 0.000815409 | 0.00681796  | 0.0699192 | 0.715964 | 7.29826  |
+| Pilnas laikas              | 0.00244251  | 0.0225115   | 0.240696  | 2.51389  | 26.5366  |
 
 ## Versijos v0.3 aprašymas
 Pabaigta programos v0.3 versija. Programos struktūra buvo pertvarkyta, visi source failai dabar yra saugomi src aplanke. 
