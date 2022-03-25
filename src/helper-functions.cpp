@@ -26,3 +26,19 @@ double findMedian(student s) {
         return s.grades[s.grades.size() / 2] * 0.4 + s.examGrade * 0.6;
     }
 }
+
+void sortContainer(std::vector<student> &s){
+    std::sort(s.begin(), s.end(), [](const student &temp1, const student &temp2){
+        return temp1.finalGradeMean < temp2.finalGradeMean;
+    });
+}
+void sortContainer(std::list<student> &s){
+    s.sort([](const student &temp1, const student &temp2){
+        return temp1.finalGradeMean < temp2.finalGradeMean;
+    });
+}
+void sortContainer(std::deque<student> &s){
+    std::sort(s.begin(), s.end(), [](const student &temp1, const student &temp2){
+        return temp1.finalGradeMean < temp2.finalGradeMean;
+    });
+}

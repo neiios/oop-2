@@ -3,15 +3,13 @@
 #include <algorithm>
 #include <vector>
 #include <limits>
+#include <list>
+#include <deque>
 
 #include "new-data-types.h"
 #include "input-output.h"
-#include "helper-functions.h"
 
-using std::cout;
-using std::cin;
-using std::string;
-using std::vector;
+using namespace std;
 
 int main() {
     setlocale(LC_ALL, "en_US.UTF-8");
@@ -50,16 +48,16 @@ int main() {
                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }
             generateStudents(gradeCount, studentCount);
-            divideFile(gradeCount, studentCount);
+            divideFile<vector<student>>(gradeCount, studentCount);
             break;
         case 4:
             for(int i = 1000; i <= 10000000; i *= 10){
                 cout << "Vector:\n";
-                divideFile(10, i);
+                divideFile<vector<student>>(10, i);
                 cout << "List:\n";
-                divideFileList(10, i);
+                divideFile<list<student>>(10, i);
                 cout << "Deque:\n";
-                divideFileDeque(10, i);
+                divideFile<deque<student>>(10, i);
                 cout << "\n\n";
             }
             break;
