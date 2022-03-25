@@ -54,7 +54,13 @@ int main() {
             break;
         case 4:
             for(int i = 1000; i <= 10000000; i *= 10){
+                cout << "Vector:\n";
                 divideFile(10, i);
+                cout << "List:\n";
+                divideFileList(10, i);
+                cout << "Deque:\n";
+                divideFileDeque(10, i);
+                cout << "\n\n";
             }
             break;
         case 5:

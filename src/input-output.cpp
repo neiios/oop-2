@@ -6,6 +6,8 @@
 #include <vector>
 #include <random>
 #include <fstream>
+#include <list>
+#include <deque>
 
 #include "new-data-types.h"
 #include "helper-functions.h"
@@ -106,7 +108,8 @@ void input(vector<student> &s) {
     }
 }
 
-void inputFromFile(vector<student> &s, const bool &removeFirstLine, const string &filename){
+template <typename T>
+void inputFromFile(T &s, const bool &removeFirstLine, const string &filename){
     std::ifstream fin;
 
     try {
@@ -179,7 +182,6 @@ void divideFile(const int &gradeCount, const int &studentCount){
     double partTime, totalTime = 0;
 
     inputFromFile(s, false, filename);
-    ///////////////////////
     partTime = t.elapsed();
     totalTime += partTime;
     cout << studentCount << " Failo nuskaitymo laikas: " << partTime << " s\n";
@@ -188,7 +190,6 @@ void divideFile(const int &gradeCount, const int &studentCount){
     std::sort(s.begin(), s.end(), [](const student &temp1, const student &temp2){
         return temp1.finalGradeMean < temp2.finalGradeMean;
     });
-    ///////////////////////
     partTime = t.elapsed();
     totalTime += partTime;
     cout << studentCount << " Rūšiavimo laikas: " << partTime << " s\n";
@@ -200,7 +201,6 @@ void divideFile(const int &gradeCount, const int &studentCount){
     vector<student> galv(it, s.end());
     s.erase(it, s.end());
     s.shrink_to_fit();
-    ///////////////////////
     partTime = t.elapsed();
     totalTime += partTime;
     cout << studentCount << " Vektorių padalijimo laikas: " << partTime << " s\n";
@@ -225,10 +225,117 @@ void divideFile(const int &gradeCount, const int &studentCount){
         fout << student.examGrade << "\n";
     }
     fout.close();
-    ///////////////////////
+    cout << studentCount << " Pilnas laikas: " << totalTime << " s\n";
+    cout << "-----------------------------------\n";
+}
+
+void divideFileList(const int &gradeCount, const int &studentCount){
+    list<student> s;
+    string filename = "kursiokai" + std::to_string(studentCount) + ".txt";
+
+    Timer t;
+    double partTime, totalTime = 0;
+
+    inputFromFile(s, false, filename);
     partTime = t.elapsed();
     totalTime += partTime;
-    cout << studentCount << " Įrašymo į failus laikas: " << partTime << " s\n";
+    cout << studentCount << " Failo nuskaitymo laikas: " << partTime << " s\n";
+    t.reset();
+
+    s.sort([](const student &temp1, const student &temp2){
+        return temp1.finalGradeMean < temp2.finalGradeMean;
+    });
+    partTime = t.elapsed();
+    totalTime += partTime;
+    cout << studentCount << " Rūšiavimo laikas: " << partTime << " s\n";
+    t.reset();
+
+    auto it = std::find_if(s.begin(), s.end(), [](const student &temp){
+        return temp.finalGradeMean > 5;
+    });
+    list<student> galv(it, s.end());
+    s.erase(it, s.end());
+    partTime = t.elapsed();
+    totalTime += partTime;
+    cout << studentCount << " Vektorių padalijimo laikas: " << partTime << " s\n";
+    t.reset();
+
+    ofstream fout("vargsiukai" + std::to_string(studentCount) + ".txt");
+    for(const auto& student:s){
+        fout << student.firstName << " " << student.lastName << " ";
+        for(const auto& grade:student.grades){
+            fout << grade << " ";
+        }
+        fout << student.examGrade << "\n";
+    }
+    fout.close();
+
+    fout.open("galvociai" + std::to_string(studentCount) + ".txt");
+    for(const auto& student:galv){
+        fout << student.firstName << " " << student.lastName << " ";
+        for(const auto& grade:student.grades){
+            fout << grade << " ";
+        }
+        fout << student.examGrade << "\n";
+    }
+    fout.close();
+
+    cout << studentCount << " Pilnas laikas: " << totalTime << " s\n";
+    cout << "-----------------------------------\n";
+}
+
+void divideFileDeque(const int &gradeCount, const int &studentCount){
+    deque<student> s;
+    string filename = "kursiokai" + std::to_string(studentCount) + ".txt";
+
+    Timer t;
+    double partTime, totalTime = 0;
+
+    inputFromFile(s, false, filename);
+    partTime = t.elapsed();
+    totalTime += partTime;
+    cout << studentCount << " Failo nuskaitymo laikas: " << partTime << " s\n";
+    t.reset();
+
+    std::sort(s.begin(), s.end(), [](const student &temp1, const student &temp2){
+        return temp1.finalGradeMean < temp2.finalGradeMean;
+    });
+    partTime = t.elapsed();
+    totalTime += partTime;
+    cout << studentCount << " Rūšiavimo laikas: " << partTime << " s\n";
+    t.reset();
+
+    auto it = std::find_if(s.begin(), s.end(), [](const student &temp){
+        return temp.finalGradeMean > 5;
+    });
+    deque<student> galv(it, s.end());
+    s.erase(it, s.end());
+    s.shrink_to_fit();
+    partTime = t.elapsed();
+    totalTime += partTime;
+    cout << studentCount << " Vektorių padalijimo laikas: " << partTime << " s\n";
+    t.reset();
+
+    ofstream fout("vargsiukai" + std::to_string(studentCount) + ".txt");
+    for(const auto& student:s){
+        fout << student.firstName << " " << student.lastName << " ";
+        for(const auto& grade:student.grades){
+            fout << grade << " ";
+        }
+        fout << student.examGrade << "\n";
+    }
+    fout.close();
+
+    fout.open("galvociai" + std::to_string(studentCount) + ".txt");
+    for(const auto& student:galv){
+        fout << student.firstName << " " << student.lastName << " ";
+        for(const auto& grade:student.grades){
+            fout << grade << " ";
+        }
+        fout << student.examGrade << "\n";
+    }
+    fout.close();
+
     cout << studentCount << " Pilnas laikas: " << totalTime << " s\n";
     cout << "-----------------------------------\n";
 }
