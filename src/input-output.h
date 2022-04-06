@@ -10,6 +10,6 @@ void output(std::vector<student> &s);
 void generateStudents(const int &gradeCount, const int &studentCount);
 
 template <typename Container>
-void divideFile(const int &gradeCount, const int &studentCount);
+void divideFile(const int &studentCount);
 
 #endif //OBJEKTINIO_PROGRAMAVIMO_UZDUOTIS_INPUT_OUTPUT_H

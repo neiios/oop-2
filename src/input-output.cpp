@@ -175,7 +175,7 @@ void generateStudents(const int &gradeCount, const int &studentCount){
 }
 
 template <typename Container>
-void divideFile(const int &gradeCount, const int &studentCount){
+void divideFile(const int &studentCount){
     Container s;
     string filename = "kursiokai" + std::to_string(studentCount) + ".txt";
 
@@ -195,11 +195,10 @@ void divideFile(const int &gradeCount, const int &studentCount){
     t.reset();
 
     auto it = std::find_if(s.begin(), s.end(), [](const student &temp){
-        return temp.finalGradeMean > 5;
+        return temp.finalGradeMean >= 5;
     });
     Container galv(it, s.end());
-    s.erase(it, s.end());
-    s.resize(s.size());
+    s.resize(s.size() - galv.size());
 
     partTime = t.elapsed();
     totalTime += partTime;
@@ -227,6 +226,8 @@ void divideFile(const int &gradeCount, const int &studentCount){
     fout.close();
     cout << studentCount << " Pilnas laikas: " << totalTime << " s\n";
     cout << "-----------------------------------\n";
+    s.clear();
+    galv.clear();
 }
 
 void output(vector<student> &s) {
@@ -248,6 +249,6 @@ void output(vector<student> &s) {
     }
 }
 
-template void divideFile<vector<student>>(const int &gradeCount, const int &studentCount);
-template void divideFile<list<student>>(const int &gradeCount, const int &studentCount);
-template void divideFile<deque<student>>(const int &gradeCount, const int &studentCount);
+template void divideFile<vector<student>>(const int &studentCount);
+template void divideFile<list<student>>(const int &studentCount);
+template void divideFile<deque<student>>(const int &studentCount);

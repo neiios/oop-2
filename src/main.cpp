@@ -48,16 +48,16 @@ int main() {
                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }
             generateStudents(gradeCount, studentCount);
-            divideFile<vector<student>>(gradeCount, studentCount);
+            divideFile<vector<student>>(studentCount);
             break;
         case 4:
             for(int i = 1000; i <= 10000000; i *= 10){
                 cout << "Vector:\n";
-                divideFile<vector<student>>(10, i);
+                divideFile<vector<student>>(i);
                 cout << "List:\n";
-                divideFile<list<student>>(10, i);
+                divideFile<list<student>>(i);
                 cout << "Deque:\n";
-                divideFile<deque<student>>(10, i);
+                divideFile<deque<student>>(i);
                 cout << "\n\n";
             }
             break;
