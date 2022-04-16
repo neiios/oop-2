@@ -1,0 +1,7 @@
+#ifndef OBJEKTINIO_PROGRAMAVIMO_UZDUOTIS_DIVIDE_FILE_H
+#define OBJEKTINIO_PROGRAMAVIMO_UZDUOTIS_DIVIDE_FILE_H
+
+template <typename Container>
+void divideFile(const int& studentCount);
+
+#endif  // OBJEKTINIO_PROGRAMAVIMO_UZDUOTIS_DIVIDE_FILE_H

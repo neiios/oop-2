@@ -6,8 +6,11 @@
 #include <string>
 #include <vector>
 
-#include "input-output.h"
-#include "new-data-types.h"
+#include "classes/student.h"
+#include "helpers/divide-file.h"
+#include "input/input.h"
+#include "output/output.h"
+#include "testing/testing.h"
 
 using namespace std;
 
@@ -51,20 +54,10 @@ int main() {
       divideFile<vector<student>>(studentCount);
       break;
     case 4:
-      for (int i = 1000; i <= 10000000; i *= 10) {
-        cout << "Vector:\n";
-        divideFile<vector<student>>(i);
-        cout << "List:\n";
-        divideFile<list<student>>(i);
-        cout << "Deque:\n";
-        divideFile<deque<student>>(i);
-        cout << "\n\n";
-      }
+      testDivision();
       break;
     case 5:
-      for (int i = 1000; i <= 10000000; i *= 10) {
-        generateStudents(10, i);
-      }
+      generateNewFiles();
       break;
     default:
       cout << "Neteisingas pasirinkimas!\n";
