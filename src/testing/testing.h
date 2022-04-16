@@ -5,4 +5,6 @@ void testDivision();
 
 void generateNewFiles();
 
+void testDivisionStrategies();
+
 #endif  // OBJEKTINIO_PROGRAMAVIMO_UZDUOTIS_TESTING_H

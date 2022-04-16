@@ -22,7 +22,8 @@ int main() {
   cout << "Įvesti studentų duomenis komandinėje eilutėje - 2\n";
   cout << "Sugeneruoti duomenų failą - 3\n";
   cout << "Testuoti programos veikimo greitį - 4\n";
-  cout << "Sugeneruoti naujus failius testavimui - 5\n";
+  cout << "Sugeneruoti naujus failus testavimui - 5\n";
+  cout << "Ištestuoti skirtingas studentų dalijimo realizacijas - 6\n";
 
   int choice;
   cout << "Jūsų pasirinkimas: ";
@@ -58,6 +59,9 @@ int main() {
       break;
     case 5:
       generateNewFiles();
+      break;
+    case 6:
+      testDivisionStrategies();
       break;
     default:
       cout << "Neteisingas pasirinkimas!\n";
