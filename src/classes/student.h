@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -18,7 +19,12 @@ class Student {
   double gradesAverage, gradesMedian, gradesMean;
 
  public:
+  // constructor
   Student() : examGrade(0), gradesAverage(0), gradesMedian(0), gradesMean(0) {}
+  // copy constructor
+  Student(const Student& temp);
+  // copy assigment operator
+  Student& operator=(Student const& temp);
   // getters
   std::string getFirstName() const { return firstName; }
   std::string getLastName() const { return lastName; }
@@ -41,4 +47,8 @@ class Student {
   void calculateGradesAverage();
   void calculateGradesMedian();
   void calculateGradesMean();
+  // overload << operator
+  friend std::ostream& operator<<(std::ostream& os, const Student& s);
+  // destructor
+  ~Student() {}
 };

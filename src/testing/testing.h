@@ -4,3 +4,4 @@ void testDivision();
 void generateNewFiles();
 void testDivisionStrategies();
 void testClass();
+void testRuleOfThree();

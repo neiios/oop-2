@@ -33,3 +33,30 @@ void Student::calculateGradesMedian() {
 void Student::calculateGradesMean() {
   gradesMean = (gradesAverage + gradesMedian) / 2;
 }
+
+// copy constructor
+Student::Student(const Student& temp)
+    : firstName(temp.firstName),
+      lastName(temp.lastName),
+      grades(temp.grades),
+      examGrade(temp.examGrade),
+      gradesAverage(temp.gradesAverage),
+      gradesMedian(temp.gradesMedian),
+      gradesMean(temp.gradesMean) {}
+// copy assigment operator
+Student& Student::operator=(Student const& temp) {
+  firstName = temp.firstName;
+  lastName = temp.lastName;
+  grades = temp.grades;
+  examGrade = temp.examGrade;
+  gradesAverage = temp.gradesAverage;
+  gradesMedian = temp.gradesMedian;
+  gradesMean = temp.gradesMean;
+  return *this;
+}
+
+ostream& operator<<(ostream& os, const Student& stud) {
+  os << "Studentas: " << stud.firstName << " " << stud.lastName
+     << ", egzamino pažymis: " << stud.examGrade << "\n";
+  return os;
+}

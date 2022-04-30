@@ -68,3 +68,30 @@ void generateNewFiles() {
     generateStudents(10, i);
   }
 }
+
+void testRuleOfThree() {
+  Student stud;
+  string firstName, lastName;
+  double exam;
+
+  // create student object
+  cout << "Įveskite studento vardą: ";
+  cin >> firstName;
+  stud.setFirstName(firstName);
+  cout << "Įveskite studento pavardę: ";
+  cin >> lastName;
+  stud.setLastName(lastName);
+  cout << "Įveskite studento egzamino pažymį: ";
+  cin >> exam;
+  stud.setExamGrade(exam);
+  cout << "Originalas\n" << stud << "\n";
+
+  // use copy constructor
+  Student studCopy(stud);
+  cout << "Panaudotas copy constructor\n" << studCopy << "\n";
+
+  // use copy assignment
+  Student studCopy2;
+  studCopy2 = stud;
+  cout << "Panaudotas copy assignment operator\n" << studCopy2 << "\n";
+}

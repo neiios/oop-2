@@ -24,6 +24,7 @@ int main() {
   cout << "Sugeneruoti naujus failus testavimui - 5\n";
   cout << "Ištestuoti skirtingas studentų dalijimo realizacijas - 6\n";
   cout << "Testuoti klasės veikimo greitį - 7\n";
+  cout << "Testuoti Rule of Three - 8\n";
 
   int choice;
   cout << "Jūsų pasirinkimas: ";
@@ -65,6 +66,9 @@ int main() {
       break;
     case 7:
       testClass();
+      break;
+    case 8:
+      testRuleOfThree();
       break;
     default:
       cout << "Neteisingas pasirinkimas!\n";
