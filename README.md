@@ -30,6 +30,26 @@ Pavarde        Vardas         Galutinis (Vid.)    Galutinis (Med.)
 ------------------------------------------------------------------
 Gates          Bill           8.40                8.40             
 ```
+## Versijos v1.1 aprašymas
+### Struktūros ir klasės palyginimas
+
+| Vector                      | 100000       | 1000000     | 10000000  |
+|-----------------------------|--------------|-------------|-----------|
+| Klasė                       | 0.163838 s   | 1.69753 s   | 18.0604 s |
+| Struktūra                   | 0.164924 s   | 1.71637 s   | 18.4865 s |
+
+Programos veikimo greitis beveik nepriklauso nuo to, ar yra panaudota struktūra, ar klasė.
+
+### Optimizavimo flagų palyginimas
+
+| Vector                      | 100000       | 1000000     | 10000000  |
+|-----------------------------|--------------|-------------|-----------|
+| Be optimizacijos            | 0.551414 s   | 6.03869 s   | 65.9000 s |
+| O1                          | 0.172355 s   | 1.77483 s   | 18.8961 s |
+| O2                          | 0.169416 s   | 1.74215 s   | 18.4922 s |
+| O3                          | 0.167442 s   | 1.71698 s   | 18.2578 s |
+
+Šiuo atveju tarp skirtingų flagų nėra didelio skirtumo. Tačiau, yra svarbu kompiliuoti su optimizacija, nes be jos programos veikimo yra labai lėtas.
 
 ## Versijos v1.0 aprašymas
 
