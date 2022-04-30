@@ -23,6 +23,7 @@ int main() {
   cout << "Testuoti programos veikimo greitį - 4\n";
   cout << "Sugeneruoti naujus failus testavimui - 5\n";
   cout << "Ištestuoti skirtingas studentų dalijimo realizacijas - 6\n";
+  cout << "Testuoti klasės veikimo greitį - 7\n";
 
   int choice;
   cout << "Jūsų pasirinkimas: ";
@@ -61,6 +62,9 @@ int main() {
       break;
     case 6:
       testDivisionStrategies();
+      break;
+    case 7:
+      testClass();
       break;
     default:
       cout << "Neteisingas pasirinkimas!\n";

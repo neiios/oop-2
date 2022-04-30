@@ -56,6 +56,13 @@ void testDivisionStrategies() {
   }
 }
 
+void testClass() {
+  for (int i = 100000; i <= 10000000; i *= 10) {
+    cout << "Vector:\n";
+    divideFile<vector<Student>>(i);
+  }
+}
+
 void generateNewFiles() {
   for (int i = 1000; i <= 10000000; i *= 10) {
     generateStudents(10, i);
