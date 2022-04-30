@@ -12,11 +12,11 @@ using namespace std;
 void testDivision() {
   for (int i = 1000; i <= 10000000; i *= 10) {
     cout << "Vector:\n";
-    divideFile<vector<student>>(i);
+    divideFile<vector<Student>>(i);
     cout << "List:\n";
-    divideFile<list<student>>(i);
+    divideFile<list<Student>>(i);
     cout << "Deque:\n";
-    divideFile<deque<student>>(i);
+    divideFile<deque<Student>>(i);
     cout << "\n\n";
   }
 }
@@ -25,33 +25,33 @@ void testDivisionStrategies() {
   cout << "Realizacija 0:\n";
   for (int i = 1000; i <= 10000000; i *= 10) {
     cout << "Vector:\n";
-    divideFile<vector<student>>(i);
+    divideFile<vector<Student>>(i);
     cout << "List:\n";
-    divideFile<list<student>>(i);
+    divideFile<list<Student>>(i);
     cout << "Deque:\n";
-    divideFile<deque<student>>(i);
+    divideFile<deque<Student>>(i);
     cout << "\n\n";
   }
   cout << "Realizacija 1:\n";
   for (int i = 1000; i <= 10000000; i *= 10) {
     cout << "Vector:\n";
-    divideFileFirstStrategy<vector<student>>(i);
+    divideFileFirstStrategy<vector<Student>>(i);
     cout << "List:\n";
-    divideFileFirstStrategy<list<student>>(i);
+    divideFileFirstStrategy<list<Student>>(i);
     cout << "Deque:\n";
-    divideFileFirstStrategy<deque<student>>(i);
+    divideFileFirstStrategy<deque<Student>>(i);
     cout << "\n\n";
   }
   cout << "Realizacija 2:\n";
   for (int i = 1000; i <= 10000000; i *= 10) {
     cout << "Vector:\n";
     if (i <= 100000)
-      divideFileSecondStrategy<vector<student>>(i);
+      divideFileSecondStrategy<vector<Student>>(i);
     cout << "List:\n";
-    divideFileSecondStrategy<list<student>>(i);
+    divideFileSecondStrategy<list<Student>>(i);
     cout << "Deque:\n";
     if (i <= 100000)
-      divideFileSecondStrategy<deque<student>>(i);
+      divideFileSecondStrategy<deque<Student>>(i);
     cout << "\n\n";
   }
 }

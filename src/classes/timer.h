@@ -1,5 +1,4 @@
-#ifndef OBJEKTINIO_PROGRAMAVIMO_UZDUOTIS_TIMER_H
-#define OBJEKTINIO_PROGRAMAVIMO_UZDUOTIS_TIMER_H
+#pragma once
 
 #include <chrono>
 
@@ -16,5 +15,3 @@ class Timer {
         .count();
   }
 };
-
-#endif  // OBJEKTINIO_PROGRAMAVIMO_UZDUOTIS_TIMER_H

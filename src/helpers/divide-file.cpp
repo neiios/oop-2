@@ -28,8 +28,8 @@ void divideFile(const int& studentCount) {
   t.reset();
 
   sortContainer(s);
-  auto it = std::find_if(s.begin(), s.end(), [](const student& temp) {
-    return temp.finalGradeMean >= 5;
+  auto it = std::find_if(s.begin(), s.end(), [](Student& temp) {
+    return temp.getGradesMean() >= 5;
   });
   Container galv(it, s.end());
   s.erase(it, s.end());
@@ -40,22 +40,22 @@ void divideFile(const int& studentCount) {
   t.reset();
 
   ofstream fout("vargsiukai" + std::to_string(studentCount) + ".txt");
-  for (const auto& student : s) {
-    fout << student.firstName << " " << student.lastName << " ";
-    for (const auto& grade : student.grades) {
+  for (auto& Student : s) {
+    fout << Student.getFirstName() << " " << Student.getLastName() << " ";
+    for (auto& grade : Student.getGrades()) {
       fout << grade << " ";
     }
-    fout << student.examGrade << "\n";
+    fout << Student.getExamGrade() << "\n";
   }
   fout.close();
 
   fout.open("galvociai" + std::to_string(studentCount) + ".txt");
-  for (const auto& student : galv) {
-    fout << student.firstName << " " << student.lastName << " ";
-    for (const auto& grade : student.grades) {
+  for (const auto& Student : galv) {
+    fout << Student.getFirstName() << " " << Student.getLastName() << " ";
+    for (const auto& grade : Student.getGrades()) {
       fout << grade << " ";
     }
-    fout << student.examGrade << "\n";
+    fout << Student.getExamGrade() << "\n";
   }
   fout.close();
 
@@ -81,11 +81,11 @@ void divideFileFirstStrategy(const int& studentCount) {
   t.reset();
 
   Container galv, varg;
-  for (const auto& student : s) {
-    if (student.finalGradeMean >= 5) {
-      galv.push_back(student);
+  for (const auto& Student : s) {
+    if (Student.getGradesMean() >= 5) {
+      galv.push_back(Student);
     } else {
-      varg.push_back(student);
+      varg.push_back(Student);
     }
   }
 
@@ -97,22 +97,22 @@ void divideFileFirstStrategy(const int& studentCount) {
   t.reset();
 
   ofstream fout("vargsiukai" + std::to_string(studentCount) + ".txt");
-  for (const auto& student : varg) {
-    fout << student.firstName << " " << student.lastName << " ";
-    for (const auto& grade : student.grades) {
+  for (const auto& Student : varg) {
+    fout << Student.getFirstName() << " " << Student.getLastName() << " ";
+    for (const auto& grade : Student.getGrades()) {
       fout << grade << " ";
     }
-    fout << student.examGrade << "\n";
+    fout << Student.getExamGrade() << "\n";
   }
   fout.close();
 
   fout.open("galvociai" + std::to_string(studentCount) + ".txt");
-  for (const auto& student : galv) {
-    fout << student.firstName << " " << student.lastName << " ";
-    for (const auto& grade : student.grades) {
+  for (const auto& Student : galv) {
+    fout << Student.getFirstName() << " " << Student.getLastName() << " ";
+    for (const auto& grade : Student.getGrades()) {
       fout << grade << " ";
     }
-    fout << student.examGrade << "\n";
+    fout << Student.getExamGrade() << "\n";
   }
   fout.close();
   cout << studentCount << " Pilnas laikas: " << totalTime << " s\n";
@@ -139,7 +139,7 @@ void divideFileSecondStrategy(const int& studentCount) {
   Container galv;
   sortContainer(s);
   for (auto it = s.begin(); it != s.end(); ++it) {
-    if (it->finalGradeMean >= 5) {
+    if (it->getGradesMean() >= 5) {
       galv.push_back(*it);
       it = s.erase(it);
       --it;
@@ -151,22 +151,22 @@ void divideFileSecondStrategy(const int& studentCount) {
   t.reset();
 
   ofstream fout("galvociai" + std::to_string(studentCount) + ".txt");
-  for (const auto& student : galv) {
-    fout << student.firstName << " " << student.lastName << " ";
-    for (const auto& grade : student.grades) {
+  for (const auto& Student : galv) {
+    fout << Student.getFirstName() << " " << Student.getLastName() << " ";
+    for (const auto& grade : Student.getGrades()) {
       fout << grade << " ";
     }
-    fout << student.examGrade << "\n";
+    fout << Student.getExamGrade() << "\n";
   }
   fout.close();
 
   fout.open("vargsiukai" + std::to_string(studentCount) + ".txt");
-  for (const auto& student : s) {
-    fout << student.firstName << " " << student.lastName << " ";
-    for (const auto& grade : student.grades) {
+  for (const auto& Student : s) {
+    fout << Student.getFirstName() << " " << Student.getLastName() << " ";
+    for (const auto& grade : Student.getGrades()) {
       fout << grade << " ";
     }
-    fout << student.examGrade << "\n";
+    fout << Student.getExamGrade() << "\n";
   }
   fout.close();
   cout << studentCount << " Pilnas laikas: " << totalTime << " s\n";
@@ -175,15 +175,15 @@ void divideFileSecondStrategy(const int& studentCount) {
   galv.clear();
 }
 
-template void divideFile<vector<student>>(const int& studentCount);
-template void divideFile<list<student>>(const int& studentCount);
-template void divideFile<deque<student>>(const int& studentCount);
+template void divideFile<vector<Student>>(const int& studentCount);
+template void divideFile<list<Student>>(const int& studentCount);
+template void divideFile<deque<Student>>(const int& studentCount);
 
-template void divideFileFirstStrategy<vector<student>>(const int& studentCount);
-template void divideFileFirstStrategy<list<student>>(const int& studentCount);
-template void divideFileFirstStrategy<deque<student>>(const int& studentCount);
+template void divideFileFirstStrategy<vector<Student>>(const int& studentCount);
+template void divideFileFirstStrategy<list<Student>>(const int& studentCount);
+template void divideFileFirstStrategy<deque<Student>>(const int& studentCount);
 
-template void divideFileSecondStrategy<vector<student>>(
+template void divideFileSecondStrategy<vector<Student>>(
     const int& studentCount);
-template void divideFileSecondStrategy<list<student>>(const int& studentCount);
-template void divideFileSecondStrategy<deque<student>>(const int& studentCount);
+template void divideFileSecondStrategy<list<Student>>(const int& studentCount);
+template void divideFileSecondStrategy<deque<Student>>(const int& studentCount);

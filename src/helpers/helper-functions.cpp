@@ -1,47 +1,19 @@
 #include "helper-functions.h"
+#include <algorithm>
 #include "../classes/timer.h"
 #include "../input/input.h"
 
-#include <algorithm>
-#include <random>
-
 using namespace std;
 
-double findAverage(const student& s) {
-  if (s.grades.empty())
-    return s.examGrade * 0.6;
-
-  int sum = 0;
-  for (const auto& grade : s.grades)
-    sum += grade;
-  return sum / (double)s.grades.size() * 0.4 + s.examGrade * 0.6;
-}
-
-// dont change the argument
-double findMedian(student s) {
-  if (s.grades.empty())
-    return s.examGrade * 0.6;
-
-  std::sort(s.grades.begin(), s.grades.end());
-  if (s.grades.size() % 2 == 0) {
-    int size = s.grades.size();
-    double median = (s.grades[size / 2 - 1] + s.grades[size / 2]) / 2.0;
-    return median * 0.4 + s.examGrade * 0.6;
-  } else {
-    int size = s.grades.size();
-    return s.grades[size / 2] * 0.4 + s.examGrade * 0.6;
-  }
-}
-
-void randomizeGrades(student& s,
+void randomizeGrades(Student& s,
                      const int& gradeCount,
                      std::mt19937& engine,
                      std::uniform_int_distribution<int>& dist) {
-  for (size_t j = 0; j < gradeCount; j++) {
+  for (auto j = 0; j < gradeCount; j++) {
     int temp = dist(engine);
-    s.grades.push_back(temp);
+    s.addGrade(temp);
   }
-  s.examGrade = dist(engine);
+  s.setExamGrade(dist(engine));
 }
 
 void generateStudents(const int& gradeCount, const int& studentCount) {
@@ -55,33 +27,33 @@ void generateStudents(const int& gradeCount, const int& studentCount) {
 
   string buffer;
   for (int i = 1; i <= studentCount; ++i) {
-    student stud;
-    stud.firstName = "Vardas" + std::to_string(i);
-    stud.lastName = "Pavarde" + std::to_string(i);
+    Student stud;
+    stud.setFirstName("Vardas" + std::to_string(i));
+    stud.setLastName("Pavarde" + std::to_string(i));
     randomizeGrades(stud, gradeCount, engine, dist);
-    buffer.append(stud.firstName + " " + stud.lastName + " ");
-    for (const auto& grade : stud.grades) {
+    buffer.append(stud.getFirstName() + " " + stud.getLastName() + " ");
+    for (const auto& grade : stud.getGrades()) {
       buffer.append(std::to_string(grade) + " ");
     }
-    buffer.append(std::to_string(stud.examGrade) + "\n");
+    buffer.append(std::to_string(stud.getExamGrade()) + "\n");
   }
 
   fprintf(file, "%s", buffer.c_str());
   fclose(file);
 }
 
-void sortContainer(std::vector<student>& s) {
-  std::sort(s.begin(), s.end(), [](const student& temp1, const student& temp2) {
-    return temp1.finalGradeMean < temp2.finalGradeMean;
+void sortContainer(std::vector<Student>& s) {
+  std::sort(s.begin(), s.end(), [](Student& temp1, Student& temp2) {
+    return temp1.getGradesMean() < temp2.getGradesMean();
   });
 }
-void sortContainer(std::list<student>& s) {
-  s.sort([](const student& temp1, const student& temp2) {
-    return temp1.finalGradeMean < temp2.finalGradeMean;
+void sortContainer(std::list<Student>& s) {
+  s.sort([](Student& temp1, Student& temp2) {
+    return temp1.getGradesMean() < temp2.getGradesMean();
   });
 }
-void sortContainer(std::deque<student>& s) {
-  std::sort(s.begin(), s.end(), [](const student& temp1, const student& temp2) {
-    return temp1.finalGradeMean < temp2.finalGradeMean;
+void sortContainer(std::deque<Student>& s) {
+  std::sort(s.begin(), s.end(), [](Student& temp1, Student& temp2) {
+    return temp1.getGradesMean() < temp2.getGradesMean();
   });
 }

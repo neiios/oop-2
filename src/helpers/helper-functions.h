@@ -1,24 +1,19 @@
-#ifndef OBJEKTINIO_PROGRAMAVIMO_UZDUOTIS_HELPER_FUNCTIONS_H
-#define OBJEKTINIO_PROGRAMAVIMO_UZDUOTIS_HELPER_FUNCTIONS_H
+#pragma once
 
+#include <algorithm>
 #include <deque>
 #include <list>
 #include <random>
 #include <vector>
 #include "../classes/student.h"
 
-double findAverage(const student& s);
-double findMedian(student s);
-
-void randomizeGrades(student& s,
+void randomizeGrades(Student& s,
                      const int& gradeCount,
                      std::mt19937& engine,
                      std::uniform_int_distribution<int>& dist);
 
-void sortContainer(std::vector<student>& s);
-void sortContainer(std::list<student>& s);
-void sortContainer(std::deque<student>& s);
-
 void generateStudents(const int& gradeCount, const int& studentCount);
 
-#endif  // OBJEKTINIO_PROGRAMAVIMO_UZDUOTIS_HELPER_FUNCTIONS_H
+void sortContainer(std::vector<Student>& s);
+void sortContainer(std::list<Student>& s);
+void sortContainer(std::deque<Student>& s);

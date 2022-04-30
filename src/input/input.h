@@ -1,12 +1,10 @@
-#ifndef OBJEKTINIO_PROGRAMAVIMO_UZDUOTIS_INPUT_H
-#define OBJEKTINIO_PROGRAMAVIMO_UZDUOTIS_INPUT_H
-
-#include "../classes/student.h"
+#pragma once
 
 #include <string>
 #include <vector>
+#include "../classes/student.h"
 
-void input(std::vector<student>& s);
+void input(std::vector<Student>& s);
 
 template <typename T>
 void inputFromFile(T& s,
@@ -14,5 +12,3 @@ void inputFromFile(T& s,
                    const std::string& filename);
 
 void generateStudents(const int& gradeCount, const int& studentCount);
-
-#endif  // OBJEKTINIO_PROGRAMAVIMO_UZDUOTIS_INPUT_H

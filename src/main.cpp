@@ -5,7 +5,6 @@
 #include <list>
 #include <string>
 #include <vector>
-
 #include "classes/student.h"
 #include "helpers/divide-file.h"
 #include "input/input.h"
@@ -16,7 +15,7 @@ using namespace std;
 
 int main() {
   setlocale(LC_ALL, "en_US.UTF-8");
-  std::vector<student> s;
+  std::vector<Student> s;
 
   cout << "Įvesti studentų duomenis iš failo - 1\n";
   cout << "Įvesti studentų duomenis komandinėje eilutėje - 2\n";
@@ -52,7 +51,7 @@ int main() {
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
       }
       generateStudents(gradeCount, studentCount);
-      divideFile<vector<student>>(studentCount);
+      divideFile<vector<Student>>(studentCount);
       break;
     case 4:
       testDivision();

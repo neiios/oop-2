@@ -1,10 +1,5 @@
-#ifndef OBJEKTINIO_PROGRAMAVIMO_UZDUOTIS_TESTING_H
-#define OBJEKTINIO_PROGRAMAVIMO_UZDUOTIS_TESTING_H
+#pragma once
 
 void testDivision();
-
 void generateNewFiles();
-
 void testDivisionStrategies();
-
-#endif  // OBJEKTINIO_PROGRAMAVIMO_UZDUOTIS_TESTING_H

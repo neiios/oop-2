@@ -1,8 +1,5 @@
-#ifndef OBJEKTINIO_PROGRAMAVIMO_UZDUOTIS_OUTPUT_H
-#define OBJEKTINIO_PROGRAMAVIMO_UZDUOTIS_OUTPUT_H
+#pragma once
 
 #include "../classes/student.h"
 
-void output(std::vector<student>& s);
-
-#endif  // OBJEKTINIO_PROGRAMAVIMO_UZDUOTIS_OUTPUT_H
+void output(std::vector<Student>& s);

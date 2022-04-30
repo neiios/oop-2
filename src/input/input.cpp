@@ -5,13 +5,12 @@
 #include <random>
 #include <sstream>
 #include <string>
-
 #include "../helpers/helper-functions.h"
 
 using namespace std;
 
-void inputGrades(student& s, int gradeCount) {
-  for (size_t j = 0; j < gradeCount; j++) {
+void inputGrades(Student& s, int gradeCount) {
+  for (auto j = 0; j < gradeCount; j++) {
     int temp;
     cout << "Įveskite pažymį Nr." << j + 1 << ": ";
     // input check
@@ -20,11 +19,11 @@ void inputGrades(student& s, int gradeCount) {
       cin.clear();  // Clear error flags
       cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
-    s.grades.push_back(temp);
+    s.addGrade(temp);
   }
 }
 
-void inputGradesEndless(student& s) {
+void inputGradesEndless(Student& s) {
   for (;;) {
     int temp = 0;
     cout << "Įveskite nauja pažymį (įveskite \"-1\", kai norite baigti "
@@ -36,22 +35,27 @@ void inputGradesEndless(student& s) {
     }
     if (temp == -1)
       break;
-    s.grades.push_back(temp);
+    s.addGrade(temp);
   }
 }
 
-void input(vector<student>& s) {
+void input(vector<Student>& s) {
   std::random_device random_device;
   std::mt19937 engine(random_device());
   std::uniform_int_distribution<int> dist(0, 10);
   while (true) {
-    student sTemp;
+    Student sTemp;
     int gradeCount = 0;
 
     cout << "Įveskite studento vardą: ";
-    cin >> sTemp.firstName;
+    string firstName;
+    cin >> firstName;
+    sTemp.setFirstName(firstName);
     cout << "Įveskite studento pavardę: ";
-    cin >> sTemp.lastName;
+    string lastName;
+    cin >> lastName;
+    sTemp.setFirstName(lastName);
+    sTemp.setLastName(lastName);
     cout << "Ar žinote kiek pažymių turi studentas"
          << " (\"-1\" jeigu nežinote)? ";
     // input check
@@ -76,16 +80,17 @@ void input(vector<student>& s) {
     }
 
     cout << "Įveskite studento egzamino pažymį: ";
-    while (!(cin >> sTemp.examGrade) || sTemp.examGrade < -1 ||
-           sTemp.examGrade > 10) {
+    int examGrade;
+    while (!(cin >> examGrade) || examGrade < -1 || examGrade > 10) {
       cout << "Klaidingas pažymys, bandikyte įvesti dar kartą: ";
       cin.clear();  // Clear error flags
       cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
+    sTemp.setExamGrade(examGrade);
 
-    sTemp.finalGradeAvg = findAverage(sTemp);
-    sTemp.finalGradeMedian = findMedian(sTemp);
-    sTemp.finalGradeMean = (sTemp.finalGradeAvg + sTemp.finalGradeMedian) / 2;
+    sTemp.calculateGradesAverage();
+    sTemp.calculateGradesMedian();
+    sTemp.calculateGradesMean();
     s.push_back(sTemp);
 
     cout << "Ar norite įvesti dar vieno studento pažymius (T arba N)? ";
@@ -118,34 +123,35 @@ void inputFromFile(T& s,
     getline(fin, line);
 
   while (getline(fin, line)) {
-    student tempStudent;
+    Student tempStudent;
     std::istringstream subStr(line);
 
-    subStr >> tempStudent.firstName >> tempStudent.lastName;
+    string firstName, lastName;
+    subStr >> firstName >> lastName;
+    tempStudent.setFirstName(firstName);
+    tempStudent.setLastName(lastName);
 
     int tempGrade;
     while (subStr >> tempGrade) {
-      tempStudent.grades.push_back(tempGrade);
+      tempStudent.addGrade(tempGrade);
     }
 
-    tempStudent.examGrade = tempStudent.grades.back();
-    tempStudent.grades.pop_back();
+    tempStudent.setExamGrade();
 
-    tempStudent.finalGradeAvg = findAverage(tempStudent);
-    tempStudent.finalGradeMedian = findMedian(tempStudent);
-    tempStudent.finalGradeMean =
-        (tempStudent.finalGradeAvg + tempStudent.finalGradeMedian) / 2;
+    tempStudent.calculateGradesAverage();
+    tempStudent.calculateGradesMedian();
+    tempStudent.calculateGradesMean();
     s.push_back(tempStudent);
   }
   fin.close();
 }
 
-template void inputFromFile(vector<student>& s,
+template void inputFromFile(vector<Student>& s,
                             const bool& removeFirstLine,
                             const std::string& filename);
-template void inputFromFile(list<student>& s,
+template void inputFromFile(list<Student>& s,
                             const bool& removeFirstLine,
                             const std::string& filename);
-template void inputFromFile(deque<student>& s,
+template void inputFromFile(deque<Student>& s,
                             const bool& removeFirstLine,
                             const std::string& filename);
