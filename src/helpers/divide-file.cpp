@@ -88,6 +88,9 @@ void divideFileFirstStrategy(const int& studentCount) {
       varg.push_back(student);
     }
   }
+
+  sortContainer(galv);
+  sortContainer(varg);
   partTime = t.elapsed();
   totalTime += partTime;
   cout << studentCount << " Vektorių padalijimo laikas: " << partTime << " s\n";
@@ -133,13 +136,13 @@ void divideFileSecondStrategy(const int& studentCount) {
   cout << studentCount << " Failo nuskaitymo laikas: " << partTime << " s\n";
   t.reset();
 
-  Container varg;
-  for (auto it = s.begin(); it != s.end();) {
-    if (it->finalGradeMean < 5) {
-      varg.push_back(*it);
+  Container galv;
+  sortContainer(s);
+  for (auto it = s.begin(); it != s.end(); ++it) {
+    if (it->finalGradeMean >= 5) {
+      galv.push_back(*it);
       it = s.erase(it);
-    } else {
-      it++;
+      --it;
     }
   }
   partTime = t.elapsed();
@@ -147,8 +150,8 @@ void divideFileSecondStrategy(const int& studentCount) {
   cout << studentCount << " Vektorių padalijimo laikas: " << partTime << " s\n";
   t.reset();
 
-  ofstream fout("vargsiukai" + std::to_string(studentCount) + ".txt");
-  for (const auto& student : varg) {
+  ofstream fout("galvociai" + std::to_string(studentCount) + ".txt");
+  for (const auto& student : galv) {
     fout << student.firstName << " " << student.lastName << " ";
     for (const auto& grade : student.grades) {
       fout << grade << " ";
@@ -157,7 +160,7 @@ void divideFileSecondStrategy(const int& studentCount) {
   }
   fout.close();
 
-  fout.open("galvociai" + std::to_string(studentCount) + ".txt");
+  fout.open("vargsiukai" + std::to_string(studentCount) + ".txt");
   for (const auto& student : s) {
     fout << student.firstName << " " << student.lastName << " ";
     for (const auto& grade : student.grades) {
@@ -169,7 +172,7 @@ void divideFileSecondStrategy(const int& studentCount) {
   cout << studentCount << " Pilnas laikas: " << totalTime << " s\n";
   cout << "-----------------------------------\n";
   s.clear();
-  varg.clear();
+  galv.clear();
 }
 
 template void divideFile<vector<student>>(const int& studentCount);
