@@ -30,6 +30,32 @@ Pavarde        Vardas         Galutinis (Vid.)    Galutinis (Med.)
 ------------------------------------------------------------------
 Gates          Bill           8.40                8.40             
 ```
+
+## Versijos v1.2 aprašymas
+Realizuota "Rule of three":
+- Copy constructor
+- Copy assignment operator
+- Destructor
+
+Taip pat realizuotas išvedimo operatorius <<.
+
+```
+Testuoti Rule of Three - 8
+Jūsų pasirinkimas: 8
+Įveskite studento vardą: Bill
+Įveskite studento pavardę: Gates
+Įveskite studento egzamino pažymį: 10
+-------------------------------------
+Originalas
+Studentas: Bill Gates, egzamino pažymis: 10
+
+Panaudotas copy constructor
+Studentas: Bill Gates, egzamino pažymis: 10
+
+Panaudotas copy assignment operator
+Studentas: Bill Gates, egzamino pažymis: 10
+
+```
 ## Versijos v1.1 aprašymas
 ### Struktūros ir klasės palyginimas
 
