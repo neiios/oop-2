@@ -36,8 +36,7 @@ void Student::calculateGradesMean() {
 
 // copy constructor
 Student::Student(const Student& temp)
-    : firstName(temp.firstName),
-      lastName(temp.lastName),
+    : Human(temp),
       grades(temp.grades),
       examGrade(temp.examGrade),
       gradesAverage(temp.gradesAverage),
