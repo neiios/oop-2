@@ -50,5 +50,5 @@ class Student {
   // overload << operator
   friend std::ostream& operator<<(std::ostream& os, const Student& s);
   // destructor
-  ~Student() {}
+  ~Student() = default;
 };

@@ -72,7 +72,7 @@ void generateNewFiles() {
 void testRuleOfThree() {
   Student stud;
   string firstName, lastName;
-  double exam;
+  int exam;
 
   // create student object
   cout << "Įveskite studento vardą: ";
