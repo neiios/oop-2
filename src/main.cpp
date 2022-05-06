@@ -13,6 +13,11 @@
 
 using namespace std;
 
+/**
+ * @brief Main function. Entry to the program.
+ *
+ * @return int
+ */
 int main() {
   setlocale(LC_ALL, "en_US.UTF-8");
   std::vector<Student> s;

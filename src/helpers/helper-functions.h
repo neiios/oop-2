@@ -1,5 +1,10 @@
 #pragma once
 
+/**
+ * @file helper-functions.h
+ * @brief Different functions used all over the program for various purposes.
+ */
+
 #include <algorithm>
 #include <deque>
 #include <list>

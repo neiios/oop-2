@@ -1,5 +1,10 @@
 #pragma once
 
+/**
+ * @file input.h
+ * @brief File with functions used for input.
+ */
+
 #include <string>
 #include <vector>
 #include "../classes/student.h"
