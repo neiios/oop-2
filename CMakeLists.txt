@@ -1,14 +1,10 @@
 cmake_minimum_required(VERSION 3.0.0)
-project(objektinio-programavimo-uzduotis VERSION 1.2.0)
+project(objektinio-programavimo-uzduotis)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_compile_options(-O3)
+include_directories(src)
 
-add_executable(main src/main.cpp
-        src/helpers/helper-functions.cpp
-        src/output/output.cpp
-        src/input/input.cpp
-        src/testing/testing.cpp
-        src/helpers/divide-file.cpp
-        src/classes/student.cpp)
+add_subdirectory(src)
+add_subdirectory(tst)
+add_subdirectory(lib/googletest)
