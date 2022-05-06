@@ -67,5 +67,5 @@ class Student : public Human {
   // overload << operator
   friend std::ostream& operator<<(std::ostream& os, const Student& s);
   // destructor
-  ~Student() = default;
+  ~Student();
 };

@@ -34,6 +34,10 @@ void Student::calculateGradesMean() {
   gradesMean = (gradesAverage + gradesMedian) / 2;
 }
 
+Student::~Student() {
+  grades.clear();
+}
+
 // copy constructor
 Student::Student(const Student& temp)
     : Human(temp),
