@@ -33,7 +33,7 @@ Gates          Bill           8.40                8.40
 
 ## Versijos v2.0 aprašymas
 
-- Sukurta dokumentacija naudojant Doxygen (galime atidaryti doxygen/html/index.html)
+- Sukurta dokumentacija naudojant Doxygen (galima atidaryti doxygen/html/index.html)
 - Realizuoti unit testai naudojant Google Test framework'ą
 - Sukurti .msi ir .exe įdiegimo failai
 
