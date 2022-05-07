@@ -1,9 +1,9 @@
 # Objektinio programavimo užduotis 1.1 - 2.0
 
-## Programos kompiliavimas ir paleidimas
+## Programos įdiegimas ir paleidimas
 
 Projektą galima paleisti komandinėje eilutėje arba savo pasirinktame IDE (pvz. CLion, Visual Studio
-arba VScode) su cmake.
+arba VScode) su cmake, taip pat prie v2.0 yra prisegtas įdiegimo failas (.msi).
 
 ## Programos veikimo pavyzdys
 
@@ -30,6 +30,12 @@ Pavarde        Vardas         Galutinis (Vid.)    Galutinis (Med.)
 ------------------------------------------------------------------
 Gates          Bill           8.40                8.40             
 ```
+
+## Versijos v2.0 aprašymas
+
+- Sukurta dokumentacija naudojant Doxygen (galime atidaryti doxygen/html/index.html)
+- Realizuoti unit testai naudojant Google Test framework'ą
+- Sukurti .msi ir .exe įdiegimo failai
 
 ## Versijos v1.5 aprašymas
 
