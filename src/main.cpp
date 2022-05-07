@@ -79,5 +79,9 @@ int main() {
       cout << "Neteisingas pasirinkimas!\n";
   }
 
+  // thanks windows, love you.
+  string test;
+  cout << "Press any key to close the program...\n";
+  cin >> test;
   return 0;
 }
