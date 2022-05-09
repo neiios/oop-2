@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>opu-2: src/output/output.h File Reference</title>
+<title>opu-2: src/main.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -65,7 +65,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('output_8h.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('src_2main_8cpp.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -86,61 +86,66 @@ $(document).ready(function(){initNavTree('output_8h.html',''); initResizable(); 
 <div class="header">
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">output.h File Reference</div></div>
+  <div class="headertitle"><div class="title">main.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>File with output functions.  
-<a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="student_8h_source.html">../classes/student.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;deque&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;limits&gt;</code><br />
+<code>#include &lt;list&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &quot;<a class="el" href="student_8h_source.html">classes/student.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="divide-file_8h_source.html">helpers/divide-file.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="input_8h_source.html">input/input.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="output_8h_source.html">output/output.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="testing_8h_source.html">testing/testing.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
-Include dependency graph for output.h:</div>
+Include dependency graph for main.cpp:</div>
 <div class="dyncontent">
-<div class="center"><img src="output_8h__incl.png" border="0" usemap="#asrc_2output_2output_8h" alt=""/></div>
-<map name="asrc_2output_2output_8h" id="asrc_2output_2output_8h">
-<area shape="rect" title="File with output functions." alt="" coords="66,5,211,32"/>
-<area shape="rect" href="student_8h.html" title=" " alt="" coords="65,80,212,107"/>
-<area shape="rect" title=" " alt="" coords="5,155,85,181"/>
-<area shape="rect" title=" " alt="" coords="109,155,168,181"/>
-<area shape="rect" title=" " alt="" coords="193,155,255,181"/>
+<div class="center"><img src="src_2main_8cpp__incl.png" border="0" usemap="#asrc_2main_8cpp" alt=""/></div>
+<map name="asrc_2main_8cpp" id="asrc_2main_8cpp">
+<area shape="rect" title=" " alt="" coords="455,5,561,32"/>
+<area shape="rect" title=" " alt="" coords="5,80,91,107"/>
+<area shape="rect" title=" " alt="" coords="115,80,178,107"/>
+<area shape="rect" title=" " alt="" coords="248,229,328,256"/>
+<area shape="rect" title=" " alt="" coords="680,80,739,107"/>
+<area shape="rect" title=" " alt="" coords="763,80,805,107"/>
+<area shape="rect" title=" " alt="" coords="435,229,493,256"/>
+<area shape="rect" title=" " alt="" coords="534,229,597,256"/>
+<area shape="rect" href="student_8h.html" title=" " alt="" coords="291,155,426,181"/>
+<area shape="rect" href="divide-file_8h.html" title="Functions used for student division. 3 Different strategies in total." alt="" coords="829,80,981,107"/>
+<area shape="rect" href="input_8h.html" title="File with functions used for input." alt="" coords="501,80,605,107"/>
+<area shape="rect" href="output_8h.html" title="File with output functions." alt="" coords="304,80,427,107"/>
+<area shape="rect" href="testing_8h.html" title="File with functions used for testing different stages of the program." alt="" coords="1005,80,1133,107"/>
 </map>
 </div>
-</div><div class="textblock"><div class="dynheader">
-This graph shows which files directly or indirectly include this file:</div>
-<div class="dyncontent">
-<div class="center"><img src="output_8h__dep__incl.png" border="0" usemap="#asrc_2output_2output_8hdep" alt=""/></div>
-<map name="asrc_2output_2output_8hdep" id="asrc_2output_2output_8hdep">
-<area shape="rect" title="File with output functions." alt="" coords="63,5,208,32"/>
-<area shape="rect" href="src_2main_8cpp.html" title=" " alt="" coords="5,80,111,107"/>
-<area shape="rect" href="output_8cpp.html" title=" " alt="" coords="134,80,294,107"/>
-</map>
-</div>
-</div>
-<p><a href="output_8h_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
+</div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a00a450119059d714b95309701e5610c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="output_8h.html#a00a450119059d714b95309701e5610c1">output</a> (std::vector&lt; <a class="el" href="class_student.html">Student</a> &gt; &amp;s)</td></tr>
-<tr class="separator:a00a450119059d714b95309701e5610c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="src_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
+<tr class="memdesc:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function. Entry to the program.  <a href="src_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">More...</a><br /></td></tr>
+<tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >File with output functions. </p>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a id="a00a450119059d714b95309701e5610c1" name="a00a450119059d714b95309701e5610c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a00a450119059d714b95309701e5610c1">&#9670;&nbsp;</a></span>output()</h2>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ae66f6b31b5ad750f1fe042a706a4e3d4" name="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae66f6b31b5ad750f1fe042a706a4e3d4">&#9670;&nbsp;</a></span>main()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void output </td>
+          <td class="memname">int main </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="class_student.html">Student</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>s</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Main function. Entry to the program. </p>
+<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
 
 </div>
 </div>
@@ -149,7 +154,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_994de0fd01319e484ee1453a6afebed0.html">output</a></li><li class="navelem"><a class="el" href="output_8h.html">output.h</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="src_2main_8cpp.html">main.cpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
   </ul>
 </div>

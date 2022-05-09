@@ -88,8 +88,8 @@ $(document).ready(function(){initNavTree('md__r_e_a_d_m_e.html',''); initResizab
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="autotoc_md1"></a>
-Programos kompiliavimas ir paleidimas</h1>
-<p >Projektą galima paleisti komandinėje eilutėje arba savo pasirinktame IDE (pvz. CLion, Visual Studio arba VScode) su cmake.</p>
+Programos įdiegimas ir paleidimas</h1>
+<p >Projektą galima paleisti komandinėje eilutėje arba savo pasirinktame IDE (pvz. CLion, Visual Studio arba VScode) su cmake, taip pat prie v2.0 yra prisegtas įdiegimo failas (.msi).</p>
 <h1><a class="anchor" id="autotoc_md2"></a>
 Programos veikimo pavyzdys</h1>
 <div class="fragment"><div class="line">------------------------------------------------------------------</div>
@@ -114,12 +114,19 @@ Programos veikimo pavyzdys</h1>
 <div class="line">------------------------------------------------------------------</div>
 <div class="line">Gates          Bill           8.40                8.40             </div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md3"></a>
+Versijos v2.0 aprašymas</h1>
+<ul>
+<li>Sukurta dokumentacija naudojant Doxygen (galima atidaryti doxygen/html/index.html)</li>
+<li>Realizuoti unit testai naudojant Google Test framework'ą</li>
+<li>Sukurti .msi ir .exe įdiegimo failai</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md4"></a>
 Versijos v1.5 aprašymas</h1>
 <ul>
 <li>Sukurta abstrakčioji bazinė klasė <a class="el" href="class_human.html" title="Abstract class Human (cannot be created).">Human</a></li>
 <li>Aprašyta išvestinė klasė <a class="el" href="class_student.html" title="A Student class that is derived from abstract class Human.">Student</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md4"></a>
+<h1><a class="anchor" id="autotoc_md5"></a>
 Versijos v1.2 aprašymas</h1>
 <p >Realizuota "Rule of three":</p>
 <ul>
@@ -142,9 +149,9 @@ Versijos v1.2 aprašymas</h1>
 <div class="line"> </div>
 <div class="line">Panaudotas copy assignment operator</div>
 <div class="line">Studentas: Bill Gates, egzamino pažymis: 10</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md6"></a>
 Versijos v1.1 aprašymas</h1>
-<h2><a class="anchor" id="autotoc_md6"></a>
+<h2><a class="anchor" id="autotoc_md7"></a>
 Struktūros ir klasės palyginimas</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -155,7 +162,7 @@ Struktūros ir klasės palyginimas</h2>
 <td class="markdownTableBodyNone">Struktūra   </td><td class="markdownTableBodyNone">0.164924 s   </td><td class="markdownTableBodyNone">1.71637 s   </td><td class="markdownTableBodyNone">18.4865 s   </td></tr>
 </table>
 <p >Programos veikimo greitis beveik nepriklauso nuo to, ar yra panaudota struktūra, ar klasė.</p>
-<h2><a class="anchor" id="autotoc_md7"></a>
+<h2><a class="anchor" id="autotoc_md8"></a>
 Optimizavimo flagų palyginimas</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -170,11 +177,11 @@ Optimizavimo flagų palyginimas</h2>
 <td class="markdownTableBodyNone">O3   </td><td class="markdownTableBodyNone">0.167442 s   </td><td class="markdownTableBodyNone">1.71698 s   </td><td class="markdownTableBodyNone">18.2578 s   </td></tr>
 </table>
 <p >Šiuo atveju tarp skirtingų flagų nėra didelio skirtumo. Tačiau, yra svarbu kompiliuoti su optimizacija, nes be jos programos veikimo yra labai lėtas.</p>
-<h1><a class="anchor" id="autotoc_md8"></a>
-Versijos v1.0 aprašymas</h1>
 <h1><a class="anchor" id="autotoc_md9"></a>
+Versijos v1.0 aprašymas</h1>
+<h1><a class="anchor" id="autotoc_md10"></a>
 Skirtingų realizacijų veikimo greitis:</h1>
-<h2><a class="anchor" id="autotoc_md10"></a>
+<h2><a class="anchor" id="autotoc_md11"></a>
 Realizacija 1:</h2>
 <p >Bendro studentai konteinerio (vector, list ir deque tipų) skaidymas (rūšiavimas) į du naujus to paties tipo konteinerius: "vargšiukų" ir "kietiakų". Veikia greitai, bet sunaudoja labai daug RAM.</p>
 <table class="markdownTable">
@@ -207,7 +214,7 @@ Realizacija 1:</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Pilnas laikas:   </td><td class="markdownTableBodyNone">0.146947 s   </td><td class="markdownTableBodyNone">1.46942 s   </td><td class="markdownTableBodyNone">14.7886 s   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md11"></a>
+<h2><a class="anchor" id="autotoc_md12"></a>
 Realizacija 2:</h2>
 <p >Bendro studentų konteinerio (vector, list ir deque) skaidymas (rūšiavimas) panaudojant tik vieną naują konteinerį: "
 vargšiukai". Sunaudoja mažiausiai RAM, bet labai lėtai veikia su vector ir deque.</p>
@@ -241,7 +248,7 @@ vargšiukai". Sunaudoja mažiausiai RAM, bet labai lėtai veikia su vector ir de
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Pilnas laikas:   </td><td class="markdownTableBodyNone">9.90031 s   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md12"></a>
+<h2><a class="anchor" id="autotoc_md13"></a>
 Realizacija 0:</h2>
 <p >Mano originali realizacija. Sunaudoja nedaug operatyviosios atminties ir veikia pakankamai greitai su visais konteineriais.</p>
 <table class="markdownTable">
@@ -274,48 +281,48 @@ Realizacija 0:</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Pilnas laikas:   </td><td class="markdownTableBodyNone">0.169377 s   </td><td class="markdownTableBodyNone">1.89989 s   </td><td class="markdownTableBodyNone">20.4094 s   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md13"></a>
+<h1><a class="anchor" id="autotoc_md14"></a>
 Skirtingų realizacijų RAM panaudojimas:</h1>
-<h2><a class="anchor" id="autotoc_md14"></a>
+<h2><a class="anchor" id="autotoc_md15"></a>
 Pagal sunaudota RAM (nuo mažiausio panaudojimo iki didžiausio):</h2>
 <ol type="1">
 <li>Realizacija 2</li>
 <li>Realizacija 0</li>
 <li>Realizacija 1</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md15"></a>
+<h2><a class="anchor" id="autotoc_md16"></a>
 Realizacija 1, vector:</h2>
 <p ><img src="readme-images/1.vector.png" alt="" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md16"></a>
+<h2><a class="anchor" id="autotoc_md17"></a>
 Realizacija 1, list:</h2>
 <p ><img src="readme-images/1.list.png" alt="" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md17"></a>
+<h2><a class="anchor" id="autotoc_md18"></a>
 Realizacija 1, deque:</h2>
 <p ><img src="readme-images/1.deque.png" alt="" class="inline"/></p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md19"></a>
+<h2><a class="anchor" id="autotoc_md20"></a>
 Realizacija 2, list:</h2>
 <p ><img src="readme-images/2.list.png" alt="" class="inline"/></p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md21"></a>
+<h2><a class="anchor" id="autotoc_md22"></a>
 Realizacija 0, vector:</h2>
 <p ><img src="readme-images/0.vector.png" alt="" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md22"></a>
+<h2><a class="anchor" id="autotoc_md23"></a>
 Realizacija 0, list:</h2>
 <p ><img src="readme-images/0.list.png" alt="" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md23"></a>
+<h2><a class="anchor" id="autotoc_md24"></a>
 Realizacija 0, deque:</h2>
 <p ><img src="readme-images/0.deque.png" alt="" class="inline"/></p>
-<h1><a class="anchor" id="autotoc_md24"></a>
+<h1><a class="anchor" id="autotoc_md25"></a>
 Versijos v0.5 aprašymas</h1>
-<h2><a class="anchor" id="autotoc_md25"></a>
+<h2><a class="anchor" id="autotoc_md26"></a>
 Testavimo sistema:</h2>
 <ul>
 <li>CPU: AMD Ryzen 5 1600 3.6Ghz</li>
 <li>RAM: 16GB 3200MHz</li>
 <li>SSD: 1TB SATA</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md26"></a>
+<h2><a class="anchor" id="autotoc_md27"></a>
 Testavimo rezultatai:</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -353,10 +360,10 @@ Testavimo rezultatai:</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Pilnas laikas:   </td><td class="markdownTableBodyNone">0.00151102 s   </td><td class="markdownTableBodyNone">0.0153063 s   </td><td class="markdownTableBodyNone">0.20733 s   </td><td class="markdownTableBodyNone">1.87803 s   </td><td class="markdownTableBodyNone">21.1207 s   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md27"></a>
+<h2><a class="anchor" id="autotoc_md28"></a>
 Išvados</h2>
 <p >Vector konteineris veikia greičiau nei List ir Deque, kai studentų skaičius yra daugiau nei 100000. Tačiau, kai studentų skaičius yra mažas, List ir Deque konteineriai veikia greičiau.</p>
-<h1><a class="anchor" id="autotoc_md28"></a>
+<h1><a class="anchor" id="autotoc_md29"></a>
 Versijos v0.4 aprašymas</h1>
 <p >Programos veikimo laikas, kai kiekvienas studentas turi po 10 pažymių:</p>
 <table class="markdownTable">
@@ -373,15 +380,15 @@ Versijos v0.4 aprašymas</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Pilnas laikas   </td><td class="markdownTableBodyNone">0.00244251   </td><td class="markdownTableBodyNone">0.0225115   </td><td class="markdownTableBodyNone">0.240696   </td><td class="markdownTableBodyNone">2.51389   </td><td class="markdownTableBodyNone">26.5366   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md29"></a>
+<h1><a class="anchor" id="autotoc_md30"></a>
 Versijos v0.3 aprašymas</h1>
 <p >Pabaigta programos v0.3 versija. Programos struktūra buvo pertvarkyta, visi source failai dabar yra saugomi src aplanke. Try-catch blokas yra panaudotas failo atidarymui tikrinti.</p>
 <p >Paleisti galima komandinėje eilutėje su g++ kompiliuojant tinkamus failus, arba kaip CMake projektą.</p>
-<h1><a class="anchor" id="autotoc_md30"></a>
+<h1><a class="anchor" id="autotoc_md31"></a>
 Versijos v0.2 aprašymas</h1>
 <p >Pabaigta programos v0.2 versija. Duomenis galima nuskaityti iš failo. Outputas yra gražiai išlygiuotas ir studentai yra surūšiuoti pagal pavardes.</p>
 <p >Paleisti galima komandinėje eilutėje su g++ kompiliuojant tinkamą failą, arba kaip CMake projektą.</p>
-<h1><a class="anchor" id="autotoc_md31"></a>
+<h1><a class="anchor" id="autotoc_md32"></a>
 Versijos v0.1 aprašymas</h1>
 <p >Pabaigta programos v0.1 versija. Studentų namų darbai gali būti saugomi arba į C masyvą, arba į vektorių.</p>
 <p >Paleisti galima komandinėje eilutėje su g++ kompiliuojant tinkamą failą, arba kaip CMake projektą. </p>
