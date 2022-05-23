@@ -6,5 +6,6 @@
  */
 
 #include "../classes/student.h"
+#include "../classes/Vector.hpp"
 
-void output(std::vector<Student>& s);
+void output(Vector<Student>& s);

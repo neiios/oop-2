@@ -10,6 +10,7 @@
 #include "input/input.h"
 #include "output/output.h"
 #include "testing/testing.h"
+#include "classes/Vector.hpp"
 
 using namespace std;
 
@@ -20,7 +21,7 @@ using namespace std;
  */
 int main() {
   setlocale(LC_ALL, "en_US.UTF-8");
-  std::vector<Student> s;
+  Vector<Student> s;
 
   cout << "Įvesti studentų duomenis iš failo - 1\n";
   cout << "Įvesti studentų duomenis komandinėje eilutėje - 2\n";
@@ -82,10 +83,5 @@ int main() {
     default:
       cout << "Neteisingas pasirinkimas!\n";
   }
-
-  // thanks windows, love you.
-  string test;
-  cout << "Press any key to close the program...\n";
-  cin >> test;
   return 0;
 }

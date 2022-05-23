@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void output(vector<Student>& s) {
+void output(Vector<Student>& s) {
   if (s.empty()) {
     cout << "Nėra studentų.\n";
     return;

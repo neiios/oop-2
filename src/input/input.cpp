@@ -40,7 +40,7 @@ void inputGradesEndless(Student& s) {
   }
 }
 
-void input(vector<Student>& s) {
+void input(Vector<Student>& s) {
   std::random_device random_device;
   std::mt19937 engine(random_device());
   std::uniform_int_distribution<int> dist(0, 10);

@@ -8,6 +8,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "Vector.hpp"
 
 // struct Student {
 //   std::string firstName, lastName;
@@ -44,7 +45,7 @@ class Human {
  */
 class Student : public Human {
  private:
-  std::vector<int> grades;
+  Vector<int> grades;
   int examGrade;
   double gradesAverage, gradesMedian, gradesMean;
 
@@ -67,7 +68,7 @@ class Student : public Human {
   // Getters
   std::string getFirstName() const { return firstName; }
   std::string getLastName() const { return lastName; }
-  std::vector<int> getGrades() const { return grades; }
+  Vector<int> getGrades() const { return grades; }
   int getExamGrade() const { return examGrade; }
   double getGradesAverage() const { return gradesAverage; }
   double getGradesMedian() const { return gradesMedian; }

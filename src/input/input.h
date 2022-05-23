@@ -8,8 +8,9 @@
 #include <string>
 #include <vector>
 #include "../classes/student.h"
+#include "../classes/Vector.hpp"
 
-void input(std::vector<Student>& s);
+void input(Vector<Student>& s);
 
 template <typename T>
 void inputFromFile(T& s,
