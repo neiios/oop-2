@@ -3,7 +3,9 @@
 #include <iostream>
 #include <list>
 #include <vector>
+#include "../classes/Vector.hpp"
 #include "../classes/student.h"
+#include "../classes/timer.h"
 #include "../helpers/divide-file.h"
 #include "../helpers/helper-functions.h"
 
@@ -94,4 +96,9 @@ void testRuleOfThree() {
   Student studCopy2;
   studCopy2 = stud;
   cout << "Panaudotas copy assignment operator\n" << studCopy2 << "\n";
+}
+
+void testMyVector() {
+  divideMyVectorTest<vector<Student>>(100000);
+  divideMyVectorTest<Vector<Student>>(100000);
 }

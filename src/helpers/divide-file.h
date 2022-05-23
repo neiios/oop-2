@@ -14,3 +14,6 @@ void divideFileFirstStrategy(const int& studentCount);
 
 template <typename Container>
 void divideFileSecondStrategy(const int& studentCount);
+
+template <typename Container>
+void divideMyVectorTest(const int& studentCount);

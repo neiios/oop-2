@@ -30,6 +30,7 @@ int main() {
   cout << "Ištestuoti skirtingas studentų dalijimo realizacijas - 6\n";
   cout << "Testuoti klasės veikimo greitį - 7\n";
   cout << "Testuoti Rule of Three - 8\n";
+  cout << "Test my Vector class - 9\n";
 
   int choice;
   cout << "Jūsų pasirinkimas: ";
@@ -74,6 +75,9 @@ int main() {
       break;
     case 8:
       testRuleOfThree();
+      break;
+    case 9:
+      testMyVector();
       break;
     default:
       cout << "Neteisingas pasirinkimas!\n";

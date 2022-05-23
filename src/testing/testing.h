@@ -10,3 +10,4 @@ void generateNewFiles();
 void testDivisionStrategies();
 void testClass();
 void testRuleOfThree();
+void testMyVector();

@@ -11,6 +11,7 @@
 #include <random>
 #include <vector>
 #include "../classes/student.h"
+#include "../classes/Vector.hpp"
 
 void randomizeGrades(Student& s,
                      const int& gradeCount,
@@ -22,3 +23,4 @@ void generateStudents(const int& gradeCount, const int& studentCount);
 void sortContainer(std::vector<Student>& s);
 void sortContainer(std::list<Student>& s);
 void sortContainer(std::deque<Student>& s);
+void sortContainer(Vector<Student>& s);

@@ -1,4 +1,5 @@
 #include "divide-file.h"
+#include "../classes/Vector.hpp"
 #include "../classes/timer.h"
 #include "../input/input.h"
 #include "helper-functions.h"
@@ -175,6 +176,62 @@ void divideFileSecondStrategy(const int& studentCount) {
   galv.clear();
 }
 
+template <typename Container>
+void divideMyVectorTest(const int& studentCount) {
+  Container s;
+  string filename = "kursiokai" + std::to_string(studentCount) + ".txt";
+
+  Timer t;
+  double partTime, totalTime = 0;
+
+  inputFromFile(s, false, filename);
+  partTime = t.elapsed();
+  totalTime += partTime;
+  cout << studentCount << " Failo nuskaitymo laikas: " << partTime << " s\n";
+  t.reset();
+
+  Container galv, varg;
+  for (const auto& Student : s) {
+    if (Student.getGradesMean() >= 5) {
+      galv.push_back(Student);
+    } else {
+      varg.push_back(Student);
+    }
+  }
+
+  sortContainer(galv);
+  sortContainer(varg);
+  partTime = t.elapsed();
+  totalTime += partTime;
+  cout << studentCount << " Vektorių padalijimo laikas: " << partTime << " s\n";
+  t.reset();
+
+  ofstream fout("vargsiukai" + std::to_string(studentCount) + ".txt");
+  for (const auto& Student : varg) {
+    fout << Student.getFirstName() << " " << Student.getLastName() << " ";
+    for (const auto& grade : Student.getGrades()) {
+      fout << grade << " ";
+    }
+    fout << Student.getExamGrade() << "\n";
+  }
+  fout.close();
+
+  fout.open("galvociai" + std::to_string(studentCount) + ".txt");
+  for (const auto& Student : galv) {
+    fout << Student.getFirstName() << " " << Student.getLastName() << " ";
+    for (const auto& grade : Student.getGrades()) {
+      fout << grade << " ";
+    }
+    fout << Student.getExamGrade() << "\n";
+  }
+  fout.close();
+  cout << studentCount << " Pilnas laikas: " << totalTime << " s\n";
+  cout << "-----------------------------------\n";
+  s.clear();
+  varg.clear();
+  galv.clear();
+}
+
 template void divideFile<vector<Student>>(const int& studentCount);
 template void divideFile<list<Student>>(const int& studentCount);
 template void divideFile<deque<Student>>(const int& studentCount);
@@ -187,3 +244,6 @@ template void divideFileSecondStrategy<vector<Student>>(
     const int& studentCount);
 template void divideFileSecondStrategy<list<Student>>(const int& studentCount);
 template void divideFileSecondStrategy<deque<Student>>(const int& studentCount);
+
+template void divideMyVectorTest<vector<Student>>(const int& studentCount);
+template void divideMyVectorTest<Vector<Student>>(const int& studentCount);

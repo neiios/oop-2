@@ -2,6 +2,7 @@
 #include <algorithm>
 #include "../classes/timer.h"
 #include "../input/input.h"
+#include "../classes/Vector.hpp"
 
 using namespace std;
 
@@ -53,6 +54,12 @@ void sortContainer(std::list<Student>& s) {
   });
 }
 void sortContainer(std::deque<Student>& s) {
+  std::sort(s.begin(), s.end(), [](Student& temp1, Student& temp2) {
+    return temp1.getGradesMean() < temp2.getGradesMean();
+  });
+}
+
+void sortContainer(Vector<Student>& s) {
   std::sort(s.begin(), s.end(), [](Student& temp1, Student& temp2) {
     return temp1.getGradesMean() < temp2.getGradesMean();
   });

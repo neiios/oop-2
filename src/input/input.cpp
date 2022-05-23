@@ -5,6 +5,7 @@
 #include <random>
 #include <sstream>
 #include <string>
+#include "../classes/Vector.hpp"
 #include "../helpers/helper-functions.h"
 
 using namespace std;
@@ -153,5 +154,8 @@ template void inputFromFile(list<Student>& s,
                             const bool& removeFirstLine,
                             const std::string& filename);
 template void inputFromFile(deque<Student>& s,
+                            const bool& removeFirstLine,
+                            const std::string& filename);
+template void inputFromFile(Vector<Student>& s,
                             const bool& removeFirstLine,
                             const std::string& filename);
