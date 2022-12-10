@@ -1,4 +1,0 @@
-<map id="Student" name="Student">
-<area shape="rect" id="node1" title="A Student class that is derived from abstract class Human." alt="" coords="5,80,77,107"/>
-<area shape="rect" id="node2" href="$class_human.html" title="Abstract class Human (cannot be created)." alt="" coords="7,5,76,32"/>
-</map>
